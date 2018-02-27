@@ -537,7 +537,12 @@ h2.resp-accordion:hover {
 
 .project__link {
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.project__link:hover {
+  font-weight: bold;
   color: #fff;
 }
 

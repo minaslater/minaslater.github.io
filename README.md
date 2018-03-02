@@ -6,9 +6,6 @@ I have made this into a Jekyll Theme. Demo: [https://jekyller.github.io/PanelCV]
 
 The theme would look like this 
 
-![Demo](/images/demo.png)
-
-
 # Installation
 
 - Fork the repository

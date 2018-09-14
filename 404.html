@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mina Slater</title>
+<title>404</title>
 <meta name="description" content="Javascriptress | Rubist | Nacho Monster">
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -61,23 +61,23 @@
 
     <div class="page-content">
       <div class="wrap">
-      <div class="container-fluid index">
-    <div class="row">
+      <div class="container-fluid index error">
+  <div class="row">
 
-        <div class="col-md-12 main content-panel">
+    <div class="col-md-12 content-panel articles">
+      <h1 class="header author-header">404</h1>
 
-            <div class="gravatar">
-                <img src="/images/title-image.jpg" class="img-circle about-image" height="150" width="150" alt="Mina Slater" />
-            </div>
+      <div class="error-text">
+        Sorry but this page doesn't seem to exist.
+      </div>
 
-            <h1 class="header author-header" itemprop="headline">Mina Slater</h1>
-            <div class="description">Javascriptress | Rubist | Nacho Monster</div>
+      <div class="error-text">
+        <a href="/">Home</a> |
+        <a href="/posts/">All Posts</a> |
+        <a href="/search/">Search</a>
+      </div>
 
-            <div class="author-text">
-                Putting the MINA in MINASWAN. <br>Dedicated to connecting people and bringing them closer together by building mindful software. Do not show me a magic trick without being prepared to reveal all your secrets. Former Stage Manager with experience in event planning and leadership. Button aficionado.
-            </div>
-
-            <p class="links">
+      <p class="links">
   <a href="https://www.twitter.com/Minar528" target="_new"><i class="fa fa-twitter"></i></a>
   <a href="http://linkedin/in/minaslater" target="_new"><i class="fa fa-linkedin"></i></a>
   
@@ -90,39 +90,30 @@
   <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
 </p>
 
-          </div>
-          <div class="col-md-12 main content-panel">
-
-            <div class="articles">
-
-              <h2>Latest Articles</h2>
-
-              <ul>
-                  
-
-                      <li>
-                          <a href="/2018/04/28/what-is-rest/">What is ReST - An Interview Survival Guide</a>
-                          <small class="hidden-xs">April 28, 2018</small>
-                      </li>
-
-                  
-
-                      <li>
-                          <a href="/2017/10/09/why-i-started-coding/">Why I Started Coding</a>
-                          <small class="hidden-xs">October 9, 2017</small>
-                      </li>
-
-                  
-                  <li>
-                      <small><i><a href="/posts/">more...</a></i></small>
-                  </li>
-              </ul>
-
-            </div>
-
-        </div>
 
     </div>
+
+  </div>
+
+  <div class="content-panel related">
+    
+      <div class="related-header">
+        <a href="/2018/04/28/what-is-rest/">Suggested Article</a>
+      </div>
+      <div class="title">
+        <a href="/2018/04/28/what-is-rest/">What is ReST - An Interview Survival Guide</a>
+      </div>
+      <div class="excerpt">
+         
+          I was recently caught off-guard at a job interview by this question: 
+
+
+         
+        <a href="/2018/04/28/what-is-rest/">Continue Reading</a>
+      </div>
+    
+  </div>
+
 </div>
 
       </div>
@@ -154,48 +145,6 @@
    });
 </script>
 
-
-<script type="text/javascript">
-
-  function setFontSize() {
-
-    var title, dateOfTitle, fontSizeOfTitle, listOfA, listOfSmall, listOfArticlesDiv, divWidth;
-
-    listOfArticlesDiv = document.getElementsByClassName("articles");
-
-    for (i = 0; i < listOfArticlesDiv.length; i++) {
-
-      listOfA = document.getElementsByClassName("articles")[i].getElementsByTagName("a");
-      listOfSmall = document.getElementsByClassName("articles")[i].getElementsByTagName("small");
-
-      divWidth = document.getElementsByClassName("articles")[i].offsetWidth;
-
-      for (k = 0; k < listOfSmall.length; k++) {
-
-        title = $(listOfA[k]);
-        dateOfTitle = $(listOfSmall[k]);
-
-        fontSizeOfTitle = startingFontSize;
-        title.css("font-size", fontSizeOfTitle);
-
-        while (title.width() + dateOfTitle.width() >= divWidth)
-          title.css("font-size", fontSizeOfTitle -= 0.5);
-
-      }
-    }
-  }
-
-  function getStartFontSize() {
-    try {
-      startingFontSize = parseInt($(document.getElementsByClassName("articles")[0].getElementsByTagName("a")[0]).css("font-size"));
-      setFontSize();
-      window.addEventListener('resize', setFontSize, true);
-    } catch (e) {}
-  }
-
-  $(document).ready(getStartFontSize);
-
-</script>
 
 
 

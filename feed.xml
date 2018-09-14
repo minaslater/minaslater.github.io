@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mina Slater</title>
+    <description>Javascriptress | Rubist | Nacho Monster</description>
+    <link>https://javascriptress.com/</link>
+    <atom:link href="https://javascriptress.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 13 Sep 2018 22:42:21 -0500</pubDate>
+    <lastBuildDate>Thu, 13 Sep 2018 22:42:21 -0500</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>What is ReST - An Interview Survival Guide</title>
+        <description>&lt;p&gt;I was recently caught off-guard at a job interview by this question: &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What is ReST?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;While my bootcamp instructors drilled us with algorithmic problems as found on Codewars, we did not allocate as much attention to the talk-about-coding type interview questions. Thinking back, it was negligent of me to assume that just because I understand something enough to use it, I could talk about it eloquently too.&lt;/p&gt;
+
+&lt;p&gt;WRONG!&lt;/p&gt;
+
+&lt;p&gt;I think I mumbled something about using HTTP verbs and URLs. I don’t really remember; I may have blacked out.&lt;/p&gt;
+
+&lt;p&gt;The paragraphs and images that follow barely skim the surface of understanding ReST, but should be sufficient knowledge to get you through your interview. &lt;/p&gt;
+
+&lt;p&gt;This is also what I wish I had given as my answer.&lt;/p&gt;
+
+&lt;h3 id=&quot;rest-stands-for-representational-statetransfer&quot;&gt;ReST stands for Representational State Transfer&lt;/h3&gt;
+
+&lt;p&gt;So, now that that’s out of the way, we can get down to what it actually means.&lt;/p&gt;
+
+&lt;p&gt;Assuming that you, the Reader, are familiar with the Client-Server-Database structure of most web applications, the short answer is that ReST is a set of guidelines that describes how your client communicates with your server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://javascriptress.com/images/post-2/rest_cartoon.jpg&quot; alt=&quot;ReSTful cartoon&quot; /&gt;
+Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;A “ReSTful” design is complex; way more complex than an Interviewer is looking for in a short interview answer. Here, we will cover the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Endpoints named after resources&lt;/li&gt;
+  &lt;li&gt;Actions performed on those endpoints&lt;/li&gt;
+  &lt;li&gt;Stateless communications&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SIDEBAR: If you are interested in diving into the nitty-gritty of ReSt, here is Chapter 5 of Roy Fielding’s dissertation.&lt;/p&gt;
+
+&lt;h2 id=&quot;hockey&quot;&gt;HOCKEY!&lt;/h2&gt;
+
+&lt;p&gt;Let’s say I have a very simple CRUD web application for a hockey league, where I keep track of all the teams in the league. Upon surveying the Users, I have condensed the user stories down to the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;As a User, I want to be able to create a team, so that I can add a new team when they join the league.&lt;/li&gt;
+  &lt;li&gt;As a User, I want to see (read) all the teams, so that I can get an overview of the league.&lt;/li&gt;
+  &lt;li&gt;As a User, I want to be able to update a team’s information, so that I can track wins and losses.&lt;/li&gt;
+  &lt;li&gt;As a User, I want to be able to delete a team, so that I can remove a team when they leave the league.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Knowing that a route consists of two parts: the path / URL and an HTTP action verb, let’s get started.&lt;/p&gt;
+
+&lt;h3 id=&quot;resources-as-endpoints&quot;&gt;Resources as Endpoints&lt;/h3&gt;
+
+&lt;p&gt;In a ReSTful architecture, the path is  a noun describing a resource that is being accessed. It is generally named after database models (tables). These paths are the endpoints our client requests will hit.&lt;/p&gt;
+
+&lt;p&gt;In the hockey app above, our requests should all hit the path representing the Team resource. So let’s start the routes there:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. /team
+2. /teams
+3. /team
+4. /team
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;actions-on-endpoints&quot;&gt;Actions on Endpoints&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If all these User Stories hit the same endpoint, how does the server know which of the actions to perform?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In order to differentiate  between each of the CRUD activities, our request from the client will also send an HTTP action verb to the server, along with the path of the endpoint the app wants to hit. &lt;/p&gt;
+
+&lt;p&gt;Let’s update our routes for the hockey app:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. POST /team
+2. GET /teams
+3. PUT or PATCH /team
+4. DELETE /team
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;stateless-communication&quot;&gt;Stateless Communication&lt;/h3&gt;
+
+&lt;p&gt;Another big part of ReSTful design is that the “communications must be stateless in nature” (Roy Fielding). That simply boils down to the fact that all the information needed to understand each request is sent along as part of the request itself.&lt;/p&gt;
+
+&lt;p&gt;For our hockey app, we will need to add something to the PUT/PATCH and DELETE routes so that our server knows which team we want to apply the action to.&lt;/p&gt;
+
+&lt;p&gt;Like so, where 1 will be the id of a specific team:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. POST /team
+2. GET /teams
+3. PUT or PATCH /team/1
+4. DELETE /team/1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;p&gt;To sum up the above points into a concise answer to the question, “What is ReST?”:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ReST is a structure for the communication between client and server, where each path is a noun, named after the resource being accessed. The requests contain an HTTP verb to define the action to be performed on the endpoint, as well as everything necessary to understand the request.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There you have it. It is two weeks late for that interview, but here is my answer.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 28 Apr 2018 00:00:00 -0500</pubDate>
+        <link>https://javascriptress.com/2018/04/28/what-is-rest/</link>
+        <guid isPermaLink="true">https://javascriptress.com/2018/04/28/what-is-rest/</guid>
+        
+        <category>interview</category>
+        
+        <category>api</category>
+        
+        <category>CodeNewbie</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Why I Started Coding</title>
+        <description>&lt;p&gt;Have you ever gone to a magic show or seen a magic trick and immediately feel the need to know every little secret about how it was performed?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;That is me.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I discovered this about myself early on, as a small child watching David Copperfield move a helicopter through the Great Wall on television and as a teenager hanging on to every secret the Masked Magician gave away. Later, as my entertainment career took me down the path toward variety and circus, I watched closely as magicians I worked with prepared for their shows. I wanted to know where every rabbit and chick came from, when that red ball went from the cup on the left to the cup on the right, and how on EARTH he knew the word in her head was “mug”.&lt;/p&gt;
+
+&lt;p&gt;Maybe unsurprisingly then, I married a variety performer. I. HIT. THE. JACKPOT. I bombarded him with questions after every magic show we saw and asked him to teach me card trick maneuvers that my hands were too small to perform.&lt;/p&gt;
+
+&lt;p&gt;It was with this level of curiosity and drive for information I first approached web development. My clown-husband had already veered left on his own career path, went to a coding bootcamp and started working as a web developer. All I knew about it at the start was that he would sit at a computer screen (with a dark background, WEIRD) for hours, typing out these colorful texts and VOILA! websites happen!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just like a magic trick.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After watching this digital wizardry happen under my roof for about a year, I finally asked him to show me what he was doing and how these text files turn into websites and applications. This is where my programming journey began.&lt;/p&gt;
+
+&lt;p&gt;I learned the basics of the command line, went through a short tutorial about HTML/CSS, and he introduced me to Ruby. It felt very powerful, the way that I made things happen by doing something seemingly unrelated. I was the magician and my hands were not too small for these tricks.&lt;/p&gt;
+
+&lt;p&gt;…and now, for my first trick!
+&lt;img src=&quot;/images/post-1/first-program.png&quot; alt=&quot;my first program!&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also always had an aptitude for thinking outside of the box, and was rarely stumped by a riddle or logic puzzle. In school, I was great at math (I essentially taught myself trigonometry), but hated the rigid repetition of math classes. Writing code gave me the creative outlet I craved, but it was objective. There are countless different ways to solve a problem in coding, but every problem still has a very clear correct answer. I can’t talk my way out of code that doesn’t work and to me, that’s liberating. There is no ifs or buts about it: either code works or it doesn’t. You can make code cleaner, DRYer, and more concise, but it always has to work, otherwise it’s wrong.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post-1/hipster-ariel.jpg&quot; alt=&quot;hipster Ariel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Admittedly, the process has been filled with lots of bumps in the road. I struggled to master the Art of Google. When I started to learn Rails, I had the hardest time understanding how the internet works, and couldn’t wrap my brain around HTTP requests/responses.&lt;/p&gt;
+
+&lt;p&gt;Predictably, in hindsight, the biggest pushback I gave was to the concept of “Rails Magic”; I had a really hard time accepting that the Rails source code was just too much for a beginner and that I needed to move on for now, let it help me and get back to uncovering the secrets later. The turning point that saved me from quitting came in the form of a talk at RailsConf 2017. Thanks to Alex Kitchens and his &lt;a href=&quot;https://www.youtube.com/watch?v=Q_MpGRfnY5s&quot;&gt;Perusing the Rails Source Code - A Beginner’s Guide&lt;/a&gt; in which he said that “…there is no magic [in Rails].”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post-1/mind-blown.png&quot; alt=&quot;mind. blown.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Learning to code is the most challenging thing I have ever taken on and, from what I hear, the journey never really ends. There are countless magic tricks still for me to discover and pick apart, and I’m excited for the opportunities to discover all the “secrets” the tech world has to offer.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Oct 2017 00:00:00 -0500</pubDate>
+        <link>https://javascriptress.com/2017/10/09/why-i-started-coding/</link>
+        <guid isPermaLink="true">https://javascriptress.com/2017/10/09/why-i-started-coding/</guid>
+        
+        <category>personal</category>
+        
+        <category>CodeNewbie</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -5,9 +5,63 @@
     <description>Javascriptress | Rubist | Nacho Monster</description>
     <link>https://javascriptress.com/</link>
     <atom:link href="https://javascriptress.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 13 Sep 2018 22:44:23 -0500</pubDate>
-    <lastBuildDate>Thu, 13 Sep 2018 22:44:23 -0500</lastBuildDate>
+    <pubDate>Sun, 16 Sep 2018 10:09:15 -0500</pubDate>
+    <lastBuildDate>Sun, 16 Sep 2018 10:09:15 -0500</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Imposter Syndrome - Feels Not Reals</title>
+        <description>&lt;p&gt;Originally published on the &lt;a href=&quot;https://www.devmynd.com/blog/imposter-syndrome-feels-not-reals/&quot;&gt;DevMynd Software Blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://javascriptress.com/images/post-3/doctor-pointing-at-computer.jpeg&quot; alt=&quot;Doctor pointing at
+computer&quot; /&gt;
+Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Imposter Syndrome (also known as Doubtia Debilitus) is a wide-spread neurological disorder caused by the disconnect between perception and reality of one’s abilities. It commonly affects newborn Software Developers from a non-traditional background, but has been observed amongst individuals of all dev-ages and backgrounds. It is generally triggered by comparing oneself to a false ideal, and conditions can worsen if symptoms are left untreated.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;symptoms&quot;&gt;Symptoms&lt;/h2&gt;
+&lt;p&gt;Some common symptoms include, but are not limited to:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tunnel Vision&lt;/strong&gt; – Usually imperceptible at an early stage, you might find yourself hyper-focused on minuscule areas of imperfection in largely successful endeavors. Despite overwhelming evidence to the contrary, you see the venture as a failure as a result.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Paranoid Delusions&lt;/strong&gt; – The intense focus on small mistakes/areas for improvement can increase in severity and cause you to create inaccurate analysis of your self-worth. The perceived “failure” becomes the defining characteristic of yourself and you become convinced that this unknowledgeable true-self will one day be exposed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Paralysis&lt;/strong&gt; – The virus attacks the brain and body with such severity that it can sometimes cause productivity to come to a halt. This is a response to your extremely high perceived rate of failure, and they have concluded that “if I don’t start, I can’t fail.”&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;treatments&quot;&gt;Treatments&lt;/h2&gt;
+&lt;p&gt;Doctors recommend the following techniques to treat Imposter Syndrome. These are found to be the most effective treatments by the Researcher; your mileage may vary.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Change it up&lt;/strong&gt; – Identify and remove yourself from environmental triggers, if only briefly, that could exacerbate symptoms. For instance, if you have consistently been working closely with someone much more experienced, it is suggested that you seek out opportunities to work alone or with someone who is more comparable in experience. While pairing with a senior developer is an excellent learning opportunity, it could sometimes lead to unrealistic expectations and self-assessment of yourself. This could occur no matter how supportive from the team. It is important to remember that though it may feel like you don’t know as much, even experienced developers sometimes Google simple things and you still have skills that are valuable and can contribute to the project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Celebrate wins&lt;/strong&gt; – The virus takes hold in your brain by exponentially multiplying negative thoughts. Fight it by celebrating any and all achievements, no matter how minuscule they might seem: “I took on a feature independently.”, “I demonstrated something for the Client.”, or “I gave my first lightning talk in front of a group.” Acknowledge these wins without qualifying it, then find a friend to give you a high-five or, if alone, give yourself a mental one. Consistency with treatment is a challenge, especially as the virus fights back. Keep at it. Maybe once or twice a day to start, and work up the frequency. Pretty soon, it will become second nature.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;External affirmation&lt;/strong&gt; – Taking the previous treatment a step further: when you are given a compliment, be sure to allow yourself to accept it. Strike words like “just”, “only”, “well…”, and “lucky” from your vocabulary. No more responding to compliments with: “It was just lightning talk.”, “Well… So-and-so had done it better.” or “I was lucky I got that job offer.”; a simple “Thank you” will do. Take pride in that someone else have noticed your achievement. Downplaying the significance of what you have done will only create fuel for the virus and feed into the negativity that it craves.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;long-termeffects&quot;&gt;Long Term Effects&lt;/h2&gt;
+&lt;p&gt;Whatever methods of treatment work for you, embrace it. But remember: we are all human. When you lapse and the virus is filling you with negative thoughts, don’t fret. Acknowledge what is happening and remember the achievements that got you to where you are. We are all learning to live with various degrees of imposter syndrome, and clinical trials conducted have uncovered that while the condition is serious, it is not chronic or terminal.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;The research cited was from personal experience, no official clinical trials were conducted. No medical personnel were involved in the writing of this article.&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 13 Sep 2018 00:00:00 -0500</pubDate>
+        <link>https://javascriptress.com/2018/09/13/imposter-syndrome/</link>
+        <guid isPermaLink="true">https://javascriptress.com/2018/09/13/imposter-syndrome/</guid>
+        
+        <category>soft skills</category>
+        
+        <category>imposter syndrome</category>
+        
+        <category>CodeNewbie</category>
+        
+        
+      </item>
     
       <item>
         <title>What is ReST - An Interview Survival Guide</title>

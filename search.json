@@ -1,6 +1,14 @@
 [
   
   {
+    "title"    : "Imposter Syndrome - Feels Not Reals",
+    "category" : "",
+    "tags"     : "soft skills, imposter syndrome, CodeNewbie",
+    "url"      : "/2018/09/13/imposter-syndrome/",
+    "date"     : "2018-09-13 00:00:00 -0500"
+    } ,
+    
+  {
     "title"    : "What is ReST - An Interview Survival Guide",
     "category" : "",
     "tags"     : "interview, api, CodeNewbie",

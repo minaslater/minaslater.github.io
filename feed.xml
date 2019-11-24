@@ -5,9 +5,176 @@
     <description>Javascriptress | Rubyist | Nacho Monster</description>
     <link>https://javascriptress.com/</link>
     <atom:link href="https://javascriptress.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Nov 2019 15:49:07 -0600</pubDate>
-    <lastBuildDate>Sun, 24 Nov 2019 15:49:07 -0600</lastBuildDate>
+    <pubDate>Sun, 24 Nov 2019 15:54:00 -0600</pubDate>
+    <lastBuildDate>Sun, 24 Nov 2019 15:54:00 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Print &amp; Interactive Debugging</title>
+        <description>&lt;p&gt;As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.&lt;/p&gt;
+
+&lt;p&gt;Because of this, when I started working, I instantly discovered that there is so much I still had to learn; syntax is only a small part of it. I’m sure my experience was not that unique and a lot of bootcamp grads struggle at our first jobs because of it.&lt;/p&gt;
+
+&lt;p&gt;From that revelation the “Bridging the Knowledge Gap” series was born.&lt;/p&gt;
+
+&lt;p&gt;The objective here is to pay it forward. Even as a Beginner, I realize that there’s always someone that’s working hard to get to where I am. I can’t travel back in time and give Past Me the knowledge and skills that I have now, but hopefully I can help others narrow the gap between Bootcamp and the Real World.&lt;/p&gt;
+
+&lt;h2 id=&quot;debugging&quot;&gt;Debugging&lt;/h2&gt;
+
+&lt;p&gt;The first topic I want to cover is debugging. As developers, we spend a lot of our time navigating code that doesn’t work, and when I first started learning to code, I thought errors were telling me that I did something wrong and since we’ve all been conditioned to avoid mistakes, they felt like failures. As an attempt to avoid error messages, I just didn’t run my code as often.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/P0mGT1s.jpg&quot; alt=&quot;you can't get error messages if you don't run the code meme&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since then, I’ve learned that errors are actually my friends and picked up a few tactics for handling bugs. I’ve organized the things I learned about debugging into three main parts, each the focus for a post of their own:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Look under the hood” - Print &amp;amp; interactive debugging&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Tap the phone line” - Network monitoring &amp;amp; server logs&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Find a bug, write a test” - Debugging best practices&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These are not meant to be step by step instructions, but rather starting points where debugging can begin. Depending on the issue at hand, we can use one of the three, mix and match them, or go another route altogether.&lt;/p&gt;
+
+&lt;p&gt;This is Part 1: “Look under the hood”, covering print &amp;amp; interactive debugging&lt;/p&gt;
+
+&lt;h3 id=&quot;print-debugging&quot;&gt;Print Debugging&lt;/h3&gt;
+
+&lt;p&gt;In Javascript, print debugging is achieved by using &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt;. In Ruby, we use &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;. Most of the time, we use this strategy to get a look at values of variables at runtime, compare these printouts to expectations to figure out where our code needed changing.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/6ypWDpK.png&quot; alt=&quot;Ruby print methods&quot; width=&quot;250px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;All three of these do similar things: output information from our program into the console.&lt;/p&gt;
+
+&lt;p&gt;But where &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; internally calls &lt;code class=&quot;highlighter-rouge&quot;&gt;to_s&lt;/code&gt; to turn the thing we want to output into a human-readable String, &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; calls &lt;code class=&quot;highlighter-rouge&quot;&gt;inspect&lt;/code&gt; internally, giving us more useful information.&lt;/p&gt;
+
+&lt;p&gt;For instance, let’s say we have an ActiveRecord object, a puppy named Dottie.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; puppy &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Puppy.first
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/nhQGFXi.jpg&quot; alt=&quot;puppy in a gift bag&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Inside the Rails console here, we can see the difference between using &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; to output our Puppy object (top) and using &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; (bottom).&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; puts puppy
+&lt;span class=&quot;c&quot;&gt;#&amp;lt;Puppy:0x00007ff2a2449930&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; nil
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:003:0&amp;gt; p puppy
+
+&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Puppy &lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;: 1, 
+    name: &lt;span class=&quot;s2&quot;&gt;&quot;Dottie&quot;&lt;/span&gt;, 
+    stomach: &lt;span class=&quot;nt&quot;&gt;-19&lt;/span&gt;, 
+    bladder: 24, 
+    bowel: 24, 
+    bored: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;, 
+    created_at: &lt;span class=&quot;s2&quot;&gt;&quot;2019-04-21 19:37:34&quot;&lt;/span&gt;, 
+    updated_at: &lt;span class=&quot;s2&quot;&gt;&quot;2019-04-28 01:06:28&quot;&lt;/span&gt;, 
+    user_id: 1&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Depending on what problems we are trying to debug at the time, we might choose one over the other.&lt;/p&gt;
+
+&lt;p&gt;Print debugging lets us leave breadcrumbs, in the form of these print statements, around our code and visually track the path of our program and look at actual pieces of data. We can watch and make sure that all the data is as expected and if an output we expected didn’t show up, it’s safe to say that our program never hit that section of code at all.&lt;/p&gt;
+
+&lt;h4 id=&quot;to-summarize&quot;&gt;To summarize:&lt;/h4&gt;
+&lt;p&gt;🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; - Outputs a human-readable string of the object, with a new line.&lt;br /&gt;
+🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; - Outputs a human-readable string of the object, without a new line.&lt;br /&gt;
+🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; - Outputs information about that specific instance of the object.&lt;/p&gt;
+
+&lt;p&gt;Aaron Patterson is a maintainer of both Ruby and Rails, and a famously self-proclaimed puts debuggerer (&lt;a href=&quot;https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html&quot;&gt;link to his blog post&lt;/a&gt;). In that post, he talks about a lot of very advanced uses for these print methods. Most of the things that he covers in the post feel very much over my head, and honestly, &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; aren’t my favorite tools for digging into the inner-workings of my Rails application. I generally prefer interactive debugging, using a Gem called &lt;a href=&quot;https://github.com/pry/pry&quot;&gt;Pry&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;interactive-debugging&quot;&gt;Interactive Debugging&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Eid2Ij2.png&quot; alt=&quot;Pry logo&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Pry allows us to open up a console session at any given point of our program, just by dropping the line &lt;code class=&quot;highlighter-rouge&quot;&gt;binding.pry&lt;/code&gt; into the parts of the code we want a closer look at. Now when we run the program again, it would pause there and give us an interactive console in the terminal. It serves largely the same purpose as using the print methods, but Pry, gives us more freedom.&lt;/p&gt;
+
+&lt;p&gt;Here is an app I built years ago to teach myself Rails, called &lt;a href=&quot;https://github.com/minaslater/Puppygotchi&quot;&gt;Puppygotchi&lt;/a&gt;. The puppies get hungry or bored over time so Users can log in to feed or play with them.&lt;/p&gt;
+
+&lt;p&gt;I have put a couple of breakpoints in the service object that ages the puppies and reset their hunger and boredom level. We also have a few private methods that are folded at the bottom.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Vh1T9gK.png&quot; alt=&quot;code snippet with binding.pry&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we run the program by reloading the page in the browser, the load would catch and appear to be unresponsive. But, over in our server, we can see the request from the reload hit the server and stop at our first &lt;code class=&quot;highlighter-rouge&quot;&gt;binding.pry&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/1VWVCsF.png&quot; alt=&quot;pry session at breakpoint&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Most things we can do in the Rails console are available in a Pry session, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt;, we can get an overview of everything that is available to us within the current context, &lt;code class=&quot;highlighter-rouge&quot;&gt;PuppyAgingService&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/VWrMVsG.png&quot; alt=&quot;pry context output for puppy aging service object&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can see from the output of our this command that the PuppyAgingService has a public instance method, &lt;code class=&quot;highlighter-rouge&quot;&gt;process&lt;/code&gt;, but it doesn’t show me the private methods, because I don’t have access to them from within Pry.&lt;/p&gt;
+
+&lt;p&gt;My projects generally couple a gem called &lt;a href=&quot;https://github.com/deivid-rodriguez/pry-byebug&quot;&gt;pry-byebug&lt;/a&gt; with Pry, which gives us commands to navigate through the codebase. The ones I most commonly use are &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;step&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;continue&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, we’re still pry’d into the &lt;code class=&quot;highlighter-rouge&quot;&gt;initialize&lt;/code&gt; method in PuppyAgingService here. We are stopped on line 4, and we can tell because of the arrow on the left of the line number. That line of code is telling our &lt;code class=&quot;highlighter-rouge&quot;&gt;@puppy&lt;/code&gt; instance variable to point to the puppy object we passed in when initializing the PuppyAgingService and right now, it  hasn’t been executed yet. If we look at our instance variable &lt;code class=&quot;highlighter-rouge&quot;&gt;puppy&lt;/code&gt;, it has no value right now; it’s &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/VOHsvtB.png&quot; alt=&quot;@puppy with nil output&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But if we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; command, the program will run the next line, assign the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;@puppy&lt;/code&gt; variable and stop at line 5.&lt;/p&gt;
+
+&lt;p&gt;We can then see &lt;code class=&quot;highlighter-rouge&quot;&gt;@puppy&lt;/code&gt; has a value now.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/nKCvdHj.png&quot; alt=&quot;output of next command in console&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, let’s say we want to know how the method &lt;code class=&quot;highlighter-rouge&quot;&gt;change_time&lt;/code&gt; works, we can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;step&lt;/code&gt; command to step into this next method call. This will land us inside the declaration of a private method defined on the PuppyAgingService class.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/5ZakyKF.png&quot; alt=&quot;step command steps into next method call, change_time&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The last navigation command I want to demonstrate is &lt;code class=&quot;highlighter-rouge&quot;&gt;continue&lt;/code&gt;, which will tell Pry to continue running the program until it hits the next breakpoint, which remember we have in the instance method, &lt;code class=&quot;highlighter-rouge&quot;&gt;process&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/ZnQG1E8.png&quot; alt=&quot;continue command gets to next breakpointinto private method&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And when we’re done with the session and want our program to carry out the rest of the actions, we can use &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt; to get out of the Pry session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/sF8fWzL.png&quot; alt=&quot;exit command exits pry session&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;to-summarize-1&quot;&gt;To summarize:&lt;/h4&gt;
+&lt;p&gt;🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; - runs the next line in the program.&lt;br /&gt;
+🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;step&lt;/code&gt; - steps into the declaration of the next method called.&lt;br /&gt;
+🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;continue&lt;/code&gt; - runs the program until the next breakpoint.&lt;br /&gt;
+🚨 &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt; - gets out of the Pry session.&lt;br /&gt;
+🎁 Bonus! 🚨 !BONUS!&lt;code class=&quot;highlighter-rouge&quot;&gt;whereami&lt;/code&gt; - tells us where the Pry session is currently.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-case&quot;&gt;Use Case&lt;/h3&gt;
+
+&lt;p&gt;If you’ve ever built a Rails project, you’ve seen this error before:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;undefined&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'select'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:NilClass&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This message is telling us that the code wants to invoke a method, &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt;, on something whose value is &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In this example, &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt; is a Ruby built-in method on the Array and Enumerable classes, so if the object it’s being called on is anything but an instance of either class, the method call results in this error. It’s the message we’ll see every time we try to use a method on something has the incorrect data type. Since there are many answers for where, how and why the data is unexpectedly &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;, opening up the program using &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; or Pry is a decent place to start this debugging process. We can use these tools to identify the problem spots and follow the clues from there to the solution.&lt;/p&gt;
+
+&lt;p&gt;Being able to peek under the hood of my program was a game-changer! For me, the hardest part of learning to code was overcoming the disconnect between the text in the files and what shows up in the browser. It’s especially hard to conceptualize when working with a dynamically typed language like Ruby, where we can assign data of any type to the same variable without any warning about potential problems.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 24 Nov 2019 00:00:00 -0600</pubDate>
+        <link>https://javascriptress.com/2019/11/24/debugging-part-one/</link>
+        <guid isPermaLink="true">https://javascriptress.com/2019/11/24/debugging-part-one/</guid>
+        
+        <category>CodeNewbie</category>
+        
+        <category>Debugging</category>
+        
+        <category>Ruby On Rails</category>
+        
+        <category>Rails Basics</category>
+        
+        
+      </item>
     
       <item>
         <title>Imposter Syndrome - Feels Not Reals</title>

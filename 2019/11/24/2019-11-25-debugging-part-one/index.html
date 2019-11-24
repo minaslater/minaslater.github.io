@@ -1,0 +1,149 @@
+<p>As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.</p>
+
+<p>Because of this, when I started working, I instantly discovered that there is so much I still had to learn; syntax is only a small part of it. I’m sure my experience was not that unique and a lot of bootcamp grads struggle at our first jobs because of it.</p>
+
+<p>From that revelation the “Bridging the Knowledge Gap” series was born.</p>
+
+<p>The objective here is to pay it forward. Even as a Beginner, I realize that there’s always someone that’s working hard to get to where I am. I can’t travel back in time and give Past Me the knowledge and skills that I have now, but hopefully I can help others narrow the gap between Bootcamp and the Real World.</p>
+
+<h2 id="debugging">Debugging</h2>
+
+<p>The first topic I want to cover is debugging. As developers, we spend a lot of our time navigating code that doesn’t work, and when I first started learning to code, I thought errors were telling me that I did something wrong and since we’ve all been conditioned to avoid mistakes, they felt like failures. As an attempt to avoid error messages, I just didn’t run my code as often.</p>
+
+<p><img src="https://i.imgur.com/P0mGT1s.jpg" alt="you can't get error messages if you don't run the code meme" width="200px" /></p>
+
+<p>Since then, I’ve learned that errors are actually my friends and picked up a few tactics for handling bugs. I’ve organized the things I learned about debugging into three main parts, each the focus for a post of their own:</p>
+
+<ol>
+  <li>
+    <p>“Look under the hood” - Print &amp; interactive debugging</p>
+  </li>
+  <li>
+    <p>“Tap the phone line” - Network monitoring &amp; server logs</p>
+  </li>
+  <li>
+    <p>“Find a bug, write a test” - Debugging best practices</p>
+  </li>
+</ol>
+
+<p>These are not meant to be step by step instructions, but rather starting points where debugging can begin. Depending on the issue at hand, we can use one of the three, mix and match them, or go another route altogether.</p>
+
+<p>This is Part 1: “Look under the hood”, covering print &amp; interactive debugging</p>
+
+<h3 id="print-debugging">Print Debugging</h3>
+
+<p>In Javascript, print debugging is achieved by using <code class="highlighter-rouge">console.log</code>. In Ruby, we use <code class="highlighter-rouge">print</code>, <code class="highlighter-rouge">puts</code> or <code class="highlighter-rouge">p</code>. Most of the time, we use this strategy to get a look at values of variables at runtime, compare these printouts to expectations to figure out where our code needed changing.</p>
+
+<p><img src="https://i.imgur.com/6ypWDpK.png" alt="Ruby print methods" width="250px" /></p>
+
+<p>All three of these do similar things: output information from our program into the console.</p>
+
+<p>But where <code class="highlighter-rouge">print</code> and <code class="highlighter-rouge">puts</code> internally calls <code class="highlighter-rouge">to_s</code> to turn the thing we want to output into a human-readable String, <code class="highlighter-rouge">p</code> calls <code class="highlighter-rouge">inspect</code> internally, giving us more useful information.</p>
+
+<p>For instance, let’s say we have an ActiveRecord object, a puppy named Dottie.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; puppy <span class="o">=</span> Puppy.first
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/nhQGFXi.jpg" alt="puppy in a gift bag" width="200px" /></p>
+
+<p>Inside the Rails console here, we can see the difference between using <code class="highlighter-rouge">puts</code> to output our Puppy object (top) and using <code class="highlighter-rouge">p</code> (bottom).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; puts puppy
+<span class="c">#&lt;Puppy:0x00007ff2a2449930&gt;</span>
+
+<span class="o">=&gt;</span> nil
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>irb<span class="o">(</span>main<span class="o">)</span>:003:0&gt; p puppy
+
+<span class="o">=&gt;</span> <span class="c">#&lt;Puppy </span>
+    <span class="nb">id</span>: 1, 
+    name: <span class="s2">"Dottie"</span>, 
+    stomach: <span class="nt">-19</span>, 
+    bladder: 24, 
+    bowel: 24, 
+    bored: <span class="nb">true</span>, 
+    created_at: <span class="s2">"2019-04-21 19:37:34"</span>, 
+    updated_at: <span class="s2">"2019-04-28 01:06:28"</span>, 
+    user_id: 1&gt;
+</code></pre></div></div>
+
+<p>Depending on what problems we are trying to debug at the time, we might choose one over the other.</p>
+
+<p>Print debugging lets us leave breadcrumbs, in the form of these print statements, around our code and visually track the path of our program and look at actual pieces of data. We can watch and make sure that all the data is as expected and if an output we expected didn’t show up, it’s safe to say that our program never hit that section of code at all.</p>
+
+<h4 id="to-summarize">To summarize:</h4>
+<p>🚨 <code class="highlighter-rouge">puts</code> - Outputs a human-readable string of the object, with a new line.<br />
+🚨 <code class="highlighter-rouge">print</code> - Outputs a human-readable string of the object, without a new line.<br />
+🚨 <code class="highlighter-rouge">p</code> - Outputs information about that specific instance of the object.</p>
+
+<p>Aaron Patterson is a maintainer of both Ruby and Rails, and a famously self-proclaimed puts debuggerer (<a href="https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html">link to his blog post</a>). In that post, he talks about a lot of very advanced uses for these print methods. Most of the things that he covers in the post feel very much over my head, and honestly, <code class="highlighter-rouge">p</code> and <code class="highlighter-rouge">puts</code> aren’t my favorite tools for digging into the inner-workings of my Rails application. I generally prefer interactive debugging, using a Gem called <a href="https://github.com/pry/pry">Pry</a>.</p>
+
+<h3 id="interactive-debugging">Interactive Debugging</h3>
+
+<p><img src="https://i.imgur.com/Eid2Ij2.png" alt="Pry logo" width="200px" /></p>
+
+<p>Pry allows us to open up a console session at any given point of our program, just by dropping the line <code class="highlighter-rouge">binding.pry</code> into the parts of the code we want a closer look at. Now when we run the program again, it would pause there and give us an interactive console in the terminal. It serves largely the same purpose as using the print methods, but Pry, gives us more freedom.</p>
+
+<p>Here is an app I built years ago to teach myself Rails, called <a href="https://github.com/minaslater/Puppygotchi">Puppygotchi</a>. The puppies get hungry or bored over time so Users can log in to feed or play with them.</p>
+
+<p>I have put a couple of breakpoints in the service object that ages the puppies and reset their hunger and boredom level. We also have a few private methods that are folded at the bottom.</p>
+
+<p><img src="https://i.imgur.com/Vh1T9gK.png" alt="code snippet with binding.pry" width="200px" /></p>
+
+<p>If we run the program by reloading the page in the browser, the load would catch and appear to be unresponsive. But, over in our server, we can see the request from the reload hit the server and stop at our first <code class="highlighter-rouge">binding.pry</code></p>
+
+<p><img src="https://i.imgur.com/1VWVCsF.png" alt="pry session at breakpoint" /></p>
+
+<p>Most things we can do in the Rails console are available in a Pry session, such as <code class="highlighter-rouge">ls</code>.</p>
+
+<p>Using <code class="highlighter-rouge">ls</code>, we can get an overview of everything that is available to us within the current context, <code class="highlighter-rouge">PuppyAgingService</code>.</p>
+
+<p><img src="https://i.imgur.com/VWrMVsG.png" alt="pry context output for puppy aging service object" /></p>
+
+<p>We can see from the output of our this command that the PuppyAgingService has a public instance method, <code class="highlighter-rouge">process</code>, but it doesn’t show me the private methods, because I don’t have access to them from within Pry.</p>
+
+<p>My projects generally couple a gem called <a href="https://github.com/deivid-rodriguez/pry-byebug">pry-byebug</a> with Pry, which gives us commands to navigate through the codebase. The ones I most commonly use are <code class="highlighter-rouge">next</code>, <code class="highlighter-rouge">step</code> and <code class="highlighter-rouge">continue</code>.</p>
+
+<p>So, we’re still pry’d into the <code class="highlighter-rouge">initialize</code> method in PuppyAgingService here. We are stopped on line 4, and we can tell because of the arrow on the left of the line number. That line of code is telling our <code class="highlighter-rouge">@puppy</code> instance variable to point to the puppy object we passed in when initializing the PuppyAgingService and right now, it  hasn’t been executed yet. If we look at our instance variable <code class="highlighter-rouge">puppy</code>, it has no value right now; it’s <code class="highlighter-rouge">nil</code>.</p>
+
+<p><img src="https://i.imgur.com/VOHsvtB.png" alt="@puppy with nil output" /></p>
+
+<p>But if we use the <code class="highlighter-rouge">next</code> command, the program will run the next line, assign the value of <code class="highlighter-rouge">@puppy</code> variable and stop at line 5.</p>
+
+<p>We can then see <code class="highlighter-rouge">@puppy</code> has a value now.</p>
+
+<p><img src="https://i.imgur.com/nKCvdHj.png" alt="output of next command in console" /></p>
+
+<p>Then, let’s say we want to know how the method <code class="highlighter-rouge">change_time</code> works, we can use the <code class="highlighter-rouge">step</code> command to step into this next method call. This will land us inside the declaration of a private method defined on the PuppyAgingService class.</p>
+
+<p><img src="https://i.imgur.com/5ZakyKF.png" alt="step command steps into next method call, change_time" /></p>
+
+<p>The last navigation command I want to demonstrate is <code class="highlighter-rouge">continue</code>, which will tell Pry to continue running the program until it hits the next breakpoint, which remember we have in the instance method, <code class="highlighter-rouge">process</code>.</p>
+
+<p><img src="https://i.imgur.com/ZnQG1E8.png" alt="continue command gets to next breakpointinto private method" /></p>
+
+<p>And when we’re done with the session and want our program to carry out the rest of the actions, we can use <code class="highlighter-rouge">exit</code> to get out of the Pry session.</p>
+
+<p><img src="https://i.imgur.com/sF8fWzL.png" alt="exit command exits pry session" /></p>
+
+<h4 id="to-summarize-1">To summarize:</h4>
+<p>🚨 <code class="highlighter-rouge">next</code> - runs the next line in the program.<br />
+🚨 <code class="highlighter-rouge">step</code> - steps into the declaration of the next method called.<br />
+🚨 <code class="highlighter-rouge">continue</code> - runs the program until the next breakpoint.<br />
+🚨 <code class="highlighter-rouge">exit</code> - gets out of the Pry session.<br />
+🎁 Bonus! 🚨 !BONUS!<code class="highlighter-rouge">whereami</code> - tells us where the Pry session is currently.</p>
+
+<h3 id="use-case">Use Case</h3>
+
+<p>If you’ve ever built a Rails project, you’ve seen this error before:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">undefined</span> <span class="nb">method</span> <span class="s1">'select'</span> <span class="k">for</span> <span class="kp">nil</span><span class="ss">:NilClass</span>
+</code></pre></div></div>
+
+<p>This message is telling us that the code wants to invoke a method, <code class="highlighter-rouge">select</code>, on something whose value is <code class="highlighter-rouge">nil</code>.</p>
+
+<p>In this example, <code class="highlighter-rouge">select</code> is a Ruby built-in method on the Array and Enumerable classes, so if the object it’s being called on is anything but an instance of either class, the method call results in this error. It’s the message we’ll see every time we try to use a method on something has the incorrect data type. Since there are many answers for where, how and why the data is unexpectedly <code class="highlighter-rouge">nil</code>, opening up the program using <code class="highlighter-rouge">puts</code> or Pry is a decent place to start this debugging process. We can use these tools to identify the problem spots and follow the clues from there to the solution.</p>
+
+<p>Being able to peek under the hood of my program was a game-changer! For me, the hardest part of learning to code was overcoming the disconnect between the text in the files and what shows up in the browser. It’s especially hard to conceptualize when working with a dynamically typed language like Ruby, where we can assign data of any type to the same variable without any warning about potential problems.</p>

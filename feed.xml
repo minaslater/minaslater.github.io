@@ -3,10 +3,10 @@
   <channel>
     <title>Mina Slater</title>
     <description>Javascriptress | Rubyist | Nacho Monster</description>
-    <link>https://javascriptress.com/</link>
-    <atom:link href="https://javascriptress.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Nov 2019 15:58:03 -0600</pubDate>
-    <lastBuildDate>Sun, 24 Nov 2019 15:58:03 -0600</lastBuildDate>
+    <link>https://minaslater.blog/</link>
+    <atom:link href="https://minaslater.blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 24 Nov 2019 16:01:10 -0600</pubDate>
+    <lastBuildDate>Sun, 24 Nov 2019 16:01:10 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -164,8 +164,8 @@
 &lt;p&gt;Being able to peek under the hood of my program was a game-changer! For me, the hardest part of learning to code was overcoming the disconnect between the text in the files and what shows up in the browser. It’s especially hard to conceptualize when working with a dynamically typed language like Ruby, where we can assign data of any type to the same variable without any warning about potential problems.&lt;/p&gt;
 </description>
         <pubDate>Sun, 24 Nov 2019 00:00:00 -0600</pubDate>
-        <link>https://javascriptress.com/2019/11/24/debugging-part-one/</link>
-        <guid isPermaLink="true">https://javascriptress.com/2019/11/24/debugging-part-one/</guid>
+        <link>https://minaslater.blog/2019/11/24/debugging-part-one/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2019/11/24/debugging-part-one/</guid>
         
         <category>CodeNewbie</category>
         
@@ -182,7 +182,7 @@
         <title>Imposter Syndrome - Feels Not Reals</title>
         <description>&lt;p&gt;Originally published on the &lt;a href=&quot;https://www.devmynd.com/blog/imposter-syndrome-feels-not-reals/&quot;&gt;DevMynd Software Blog&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://javascriptress.com/images/post-3/doctor-pointing-at-computer.jpeg&quot; alt=&quot;Doctor pointing at
+&lt;p&gt;&lt;img src=&quot;https://minaslater.blog/images/post-3/doctor-pointing-at-computer.jpeg&quot; alt=&quot;Doctor pointing at
 computer&quot; /&gt;
 Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&gt;&lt;/p&gt;
 
@@ -220,8 +220,8 @@ Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&
 &lt;p&gt;&lt;em&gt;The research cited was from personal experience, no official clinical trials were conducted. No medical personnel were involved in the writing of this article.&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 13 Sep 2018 00:00:00 -0500</pubDate>
-        <link>https://javascriptress.com/2018/09/13/imposter-syndrome/</link>
-        <guid isPermaLink="true">https://javascriptress.com/2018/09/13/imposter-syndrome/</guid>
+        <link>https://minaslater.blog/2018/09/13/imposter-syndrome/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2018/09/13/imposter-syndrome/</guid>
         
         <category>soft skills</category>
         
@@ -256,7 +256,7 @@ Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&
 
 &lt;p&gt;Assuming that you, the Reader, are familiar with the Client-Server-Database structure of most web applications, the short answer is that ReST is a set of guidelines that describes how your client communicates with your server.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://javascriptress.com/images/post-2/rest_cartoon.jpg&quot; alt=&quot;ReSTful cartoon&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://minaslater.blog/images/post-2/rest_cartoon.jpg&quot; alt=&quot;ReSTful cartoon&quot; /&gt;
 Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&lt;/a&gt; &lt;/p&gt;
 
 &lt;p&gt;A “ReSTful” design is complex; way more complex than an Interviewer is looking for in a short interview answer. Here, we will cover the following:&lt;/p&gt;
@@ -335,8 +335,8 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 &lt;p&gt;There you have it. It is two weeks late for that interview, but here is my answer.&lt;/p&gt;
 </description>
         <pubDate>Sat, 28 Apr 2018 00:00:00 -0500</pubDate>
-        <link>https://javascriptress.com/2018/04/28/what-is-rest/</link>
-        <guid isPermaLink="true">https://javascriptress.com/2018/04/28/what-is-rest/</guid>
+        <link>https://minaslater.blog/2018/04/28/what-is-rest/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2018/04/28/what-is-rest/</guid>
         
         <category>interview</category>
         
@@ -385,8 +385,8 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 &lt;p&gt;Learning to code is the most challenging thing I have ever taken on and, from what I hear, the journey never really ends. There are countless magic tricks still for me to discover and pick apart, and I’m excited for the opportunities to discover all the “secrets” the tech world has to offer.&lt;/p&gt;
 </description>
         <pubDate>Mon, 09 Oct 2017 00:00:00 -0500</pubDate>
-        <link>https://javascriptress.com/2017/10/09/why-i-started-coding/</link>
-        <guid isPermaLink="true">https://javascriptress.com/2017/10/09/why-i-started-coding/</guid>
+        <link>https://minaslater.blog/2017/10/09/why-i-started-coding/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2017/10/09/why-i-started-coding/</guid>
         
         <category>personal</category>
         

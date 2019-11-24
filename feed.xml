@@ -5,13 +5,15 @@
     <description>Javascriptress | Rubyist | Nacho Monster</description>
     <link>https://javascriptress.com/</link>
     <atom:link href="https://javascriptress.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Nov 2019 15:54:00 -0600</pubDate>
-    <lastBuildDate>Sun, 24 Nov 2019 15:54:00 -0600</lastBuildDate>
+    <pubDate>Sun, 24 Nov 2019 15:58:03 -0600</pubDate>
+    <lastBuildDate>Sun, 24 Nov 2019 15:58:03 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>Print &amp; Interactive Debugging</title>
-        <description>&lt;p&gt;As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.&lt;/p&gt;
+        <description>&lt;p&gt;&lt;em&gt;Part of the Bridging The Knowledge Gap series&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.&lt;/p&gt;
 
 &lt;p&gt;Because of this, when I started working, I instantly discovered that there is so much I still had to learn; syntax is only a small part of it. I’m sure my experience was not that unique and a lot of bootcamp grads struggle at our first jobs because of it.&lt;/p&gt;
 
@@ -23,7 +25,7 @@
 
 &lt;p&gt;The first topic I want to cover is debugging. As developers, we spend a lot of our time navigating code that doesn’t work, and when I first started learning to code, I thought errors were telling me that I did something wrong and since we’ve all been conditioned to avoid mistakes, they felt like failures. As an attempt to avoid error messages, I just didn’t run my code as often.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/P0mGT1s.jpg&quot; alt=&quot;you can't get error messages if you don't run the code meme&quot; width=&quot;200px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/P0mGT1s.jpg&quot; alt=&quot;you can't get error messages if you don't run the code meme&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Since then, I’ve learned that errors are actually my friends and picked up a few tactics for handling bugs. I’ve organized the things I learned about debugging into three main parts, each the focus for a post of their own:&lt;/p&gt;
 
@@ -47,7 +49,7 @@
 
 &lt;p&gt;In Javascript, print debugging is achieved by using &lt;code class=&quot;highlighter-rouge&quot;&gt;console.log&lt;/code&gt;. In Ruby, we use &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;p&lt;/code&gt;. Most of the time, we use this strategy to get a look at values of variables at runtime, compare these printouts to expectations to figure out where our code needed changing.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/6ypWDpK.png&quot; alt=&quot;Ruby print methods&quot; width=&quot;250px&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/6ypWDpK.png&quot; alt=&quot;Ruby print methods&quot; width=&quot;350px&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;All three of these do similar things: output information from our program into the console.&lt;/p&gt;
 

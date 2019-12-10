@@ -5,13 +5,111 @@
     <description>Javascriptress | Rubyist | Nacho Monster</description>
     <link>https://minaslater.blog/</link>
     <atom:link href="https://minaslater.blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Nov 2019 16:01:10 -0600</pubDate>
-    <lastBuildDate>Sun, 24 Nov 2019 16:01:10 -0600</lastBuildDate>
+    <pubDate>Mon, 09 Dec 2019 20:07:38 -0600</pubDate>
+    <lastBuildDate>Mon, 09 Dec 2019 20:07:38 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
+        <title>Debugging 2 - Network Monitoring and Server Logs</title>
+        <description>&lt;p&gt;&lt;em&gt;Part Two of the &lt;strong&gt;Bridging the Knowledge Gap&lt;/strong&gt; Series on Debugging&lt;/em&gt;&lt;br /&gt;
+&lt;em&gt;Check out Part One &lt;a href=&quot;/2019/11/24/debugging-part-one/&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Learning syntax is only a small part of being a developer. The transition from coding bootcamp or online tutorials to the Real World can be a struggle. The objective of this series of blog posts is to summarize the knowledge that I gained during my own transition period (and beyond), and pay it forward to those that find themselves in a similar position.&lt;/p&gt;
+
+&lt;h3 id=&quot;debugging&quot;&gt;Debugging&lt;/h3&gt;
+
+&lt;p&gt;A reminder of the debugging topics that we will be covering:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;/2019/11/24/debugging-part-one/}&quot;&gt;“Look under the hood” - Print &amp;amp; interactive debugging&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Tap the phone line” - Network monitoring &amp;amp; server logs&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“Find a bug, write a test” - Debugging best practice&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;part-two-tap-the-phone-line&quot;&gt;Part Two: Tap the phone line&lt;/h2&gt;
+
+&lt;h3 id=&quot;browser-developer-tools&quot;&gt;Browser Developer Tools&lt;/h3&gt;
+
+&lt;p&gt;As web developers, testing features in the browser as we write code is a fairly standard practice in our typical development flow. Usually, when things aren’t working properly, we would expect to see some kind of error in the browser or Javascript console. However, oftentimes, we would be faced with an unresponsive UI or a blank screen.&lt;/p&gt;
+
+&lt;p&gt;Something that’s really useful in these cases is built right into the browser. If we open up the developer tools, we can see all these tabs. The most useful ones, from left to right, are Elements (HTML &amp;amp; styling), Console (Javascript) and Network (server activities).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Ab5tqGE.png&quot; alt=&quot;Screencap of puppy app with the developer tools open and Elements, Console and Network highlighted&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Network tab, lives a log of our network activities. It shows us whether our app’s resources are being downloaded or uploaded correctly, and the status of our application’s trips to and from the server.&lt;/p&gt;
+
+&lt;p&gt;When we first open up the dev tools, we won’t see anything in the logs yet. But once the tab is open, we can reload the page or repeat the action that was problematic and watch the logs populate with all the network activities.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/50cTDFH.png&quot; alt=&quot;Network tab with a 500 status request&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Each row in the table at the bottom represents an HTTP request and the column gives you more information about each of the requests. The ones that I look at most often are the name of the resources, the status, which is the HTTP response code, and the resource type.&lt;/p&gt;
+
+&lt;p&gt;Some lines will appear in red if there are bad requests, maybe a 500 internal server error or a 403 forbidden.&lt;/p&gt;
+
+&lt;p&gt;When we click into one of these lines, we have access to more details like the request and response headers, and the response body. These sections will let us look at the requests more closely. I typically check to make sure the requests are going out to server with all the information that the backend needs to properly process the request.&lt;/p&gt;
+
+&lt;p&gt;In the Headers tab under an individual request line, there’s a request payload section that will tell us what information went out to the server, and we can see whether it’s behaving as expected or identify where it’s not.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/KGTwIaX.png&quot; alt=&quot;Response tab in Network that shows a 500 returned from the server&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the flipside, there’s a Response tab that will show us what came back from the server as a result of our request.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/wC9X9s7.png&quot; alt=&quot;Response tab in Network that shows a 500 returned from the server&quot; width=&quot;550px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this case, it looks like our request resulted in a 500 internal server error, because it raised an ArgumentError on the backend because we gave some method the wrong number of arguments.&lt;/p&gt;
+
+&lt;h3 id=&quot;server-logs&quot;&gt;Server Logs&lt;/h3&gt;
+
+&lt;p&gt;We can also look for similar information from the server-side by peeking into the server logs.&lt;/p&gt;
+
+&lt;p&gt;This is the place our backend will log information about each request coming in, how the server resolves the requests and the result. This is where exception and warnings will show up and where the Pry session will open if the program hits a breakpoint.&lt;/p&gt;
+
+&lt;p&gt;We have here the Rails server for Puppygotchi, the example app from &lt;a href=&quot;/2019/11/24/debugging-part-one/}&quot;&gt;Part One: Look Under the Hood&lt;/a&gt;. This is all the information the server logged during for the same action from when we saw the network logs in the browser.&lt;/p&gt;
+
+&lt;p&gt;Like with the network tab, we can see the HTTP request and which route it hits (Box 1), the response status code (Box 2), and the exception that was raised (Box 3), which we saw in the browser returns as part of the response body.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/DdDAFTM.png&quot; alt=&quot;Rails server that logs the route a request hits, the response code and any exception or error raised&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;takeaway&quot;&gt;Takeaway&lt;/h3&gt;
+
+&lt;p&gt;There are a lot of more advanced ways to read both the Network tab and the server logs, and get them to even better clues on how to approach our bugs. When I was first getting started, I had a hard time even remembering to look in these places; let alone knowing what it was telling me. This is only meant to point out something that’s easy to overlook:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Even though a bug manifests itself on the frontend doesn’t necessarily mean it’s something wrong with the frontend code.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I wasted a lot of time looking in all the wrong places only to realize that it was actually a backend issue disguising itself as a frontend error.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/A3ypjb2.gif&quot; alt=&quot;Captain Marvel drops through the ceiling of a bus to beat up an old lady&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also recommend keep an eye on the Network tab and the server logs as a matter of practice, because it is really beneficial to be familiar with how our programs. As we can saw, the logs don’t always tell us when something is misbehaving; they mostly just tell us what is happening. The output definitely are not always color-coded, so if we know what the logs look like when it’s correct, we will be able to spot when it’s not.&lt;/p&gt;
+
+&lt;p&gt;Be patient. The more we read these logs and error messages, the easier it would be next time to spot the important things.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Dec 2019 00:00:00 -0600</pubDate>
+        <link>https://minaslater.blog/2019/12/09/debugging-part-two/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2019/12/09/debugging-part-two/</guid>
+        
+        <category>CodeNewbie</category>
+        
+        <category>Debugging</category>
+        
+        <category>Ruby On Rails</category>
+        
+        <category>Early career</category>
+        
+        
+      </item>
+    
+      <item>
         <title>Print &amp; Interactive Debugging</title>
-        <description>&lt;p&gt;&lt;em&gt;Part of the Bridging The Knowledge Gap series&lt;/em&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;Part One of the &lt;em&gt;Bridging The Knowledge Gap&lt;/em&gt; series on Debugging&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.&lt;/p&gt;
 

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debugging 2 - Network Monitoring and Server Logs</title>
+<meta name="description" content="Javascriptress | Rubyist | Nacho Monster">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
+<link rel="stylesheet" href="/css/highlightjs.piperita.css">
+
+<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://minaslater.blog/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minaslater.blog/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minaslater.blog/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://minaslater.blog/favicons/site.webmanifest">
+<link rel="mask-icon" href="https://minaslater.blog/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+</head>
+
+
+    <body>
+
+    <nav id="my-menu">
+  <div>
+    <p>Mina Slater</p>
+
+    <ul class="pages">
+      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="/posts/"><i class="fa fa-archive"></i> All Posts</a></li>
+      <li><a href="/search/"><i class="fa fa-search"></i> Search</a></li>
+    </ul>
+
+    <p class="links">
+  <a href="https://www.twitter.com/Minar528" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.linkedin.com/in/minayslater/" target="_new"><i class="fa fa-linkedin"></i></a>
+  
+  
+  
+  <a href="https://github.com/minaslater" target="_new"><i class="fa fa-github-alt"></i></a>
+  
+  <a href="https://www.instagram.com/Minar528" target="_new"><i class="fa fa-instagram"></i></a>
+  
+  <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
+</p>
+
+  </div>
+</nav>
+<div class="menu-button" href="#menu"><i class="fa fa-bars"></i></div>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      
+
+<div class="container-fluid single">
+  <div class="row">
+
+    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+      
+
+      <h1 class="header" itemprop="name">Debugging 2 - Network Monitoring and Server Logs</h1>
+
+      <div class="author">
+        <small><i>
+          
+          on <span itemprop="datePublished" content="2014-08-28">December 9, 2019</span>
+          
+        </i></small>
+      </div>
+
+      <div class="read-time">
+        <small>
+          5 minute read
+        </small>
+      </div>
+
+      <div class="content-panel content">
+
+        
+
+        <span itemprop="articleBody"><p><em>Part Two of the <strong>Bridging the Knowledge Gap</strong> Series on Debugging</em><br />
+<em>Check out Part One <a href="/2019/11/24/debugging-part-one/">here</a></em></p>
+
+<p>Learning syntax is only a small part of being a developer. The transition from coding bootcamp or online tutorials to the Real World can be a struggle. The objective of this series of blog posts is to summarize the knowledge that I gained during my own transition period (and beyond), and pay it forward to those that find themselves in a similar position.</p>
+
+<h3 id="debugging">Debugging</h3>
+
+<p>A reminder of the debugging topics that we will be covering:</p>
+
+<ol>
+  <li>
+    <p><a href="/2019/11/24/debugging-part-one/}">“Look under the hood” - Print &amp; interactive debugging</a></p>
+  </li>
+  <li>
+    <p>“Tap the phone line” - Network monitoring &amp; server logs</p>
+  </li>
+  <li>
+    <p>“Find a bug, write a test” - Debugging best practice</p>
+  </li>
+</ol>
+
+<h2 id="part-two-tap-the-phone-line">Part Two: Tap the phone line</h2>
+
+<h3 id="browser-developer-tools">Browser Developer Tools</h3>
+
+<p>As web developers, testing features in the browser as we write code is a fairly standard practice in our typical development flow. Usually, when things aren’t working properly, we would expect to see some kind of error in the browser or Javascript console. However, oftentimes, we would be faced with an unresponsive UI or a blank screen.</p>
+
+<p>Something that’s really useful in these cases is built right into the browser. If we open up the developer tools, we can see all these tabs. The most useful ones, from left to right, are Elements (HTML &amp; styling), Console (Javascript) and Network (server activities).</p>
+
+<p><img src="https://i.imgur.com/Ab5tqGE.png" alt="Screencap of puppy app with the developer tools open and Elements, Console and Network highlighted" width="500px" /></p>
+
+<p>In the Network tab, lives a log of our network activities. It shows us whether our app’s resources are being downloaded or uploaded correctly, and the status of our application’s trips to and from the server.</p>
+
+<p>When we first open up the dev tools, we won’t see anything in the logs yet. But once the tab is open, we can reload the page or repeat the action that was problematic and watch the logs populate with all the network activities.</p>
+
+<p><img src="https://i.imgur.com/50cTDFH.png" alt="Network tab with a 500 status request" width="500px" /></p>
+
+<p>Each row in the table at the bottom represents an HTTP request and the column gives you more information about each of the requests. The ones that I look at most often are the name of the resources, the status, which is the HTTP response code, and the resource type.</p>
+
+<p>Some lines will appear in red if there are bad requests, maybe a 500 internal server error or a 403 forbidden.</p>
+
+<p>When we click into one of these lines, we have access to more details like the request and response headers, and the response body. These sections will let us look at the requests more closely. I typically check to make sure the requests are going out to server with all the information that the backend needs to properly process the request.</p>
+
+<p>In the Headers tab under an individual request line, there’s a request payload section that will tell us what information went out to the server, and we can see whether it’s behaving as expected or identify where it’s not.</p>
+
+<p><img src="https://i.imgur.com/KGTwIaX.png" alt="Response tab in Network that shows a 500 returned from the server" width="500px" /></p>
+
+<p>On the flipside, there’s a Response tab that will show us what came back from the server as a result of our request.</p>
+
+<p><img src="https://i.imgur.com/wC9X9s7.png" alt="Response tab in Network that shows a 500 returned from the server" width="550px" /></p>
+
+<p>In this case, it looks like our request resulted in a 500 internal server error, because it raised an ArgumentError on the backend because we gave some method the wrong number of arguments.</p>
+
+<h3 id="server-logs">Server Logs</h3>
+
+<p>We can also look for similar information from the server-side by peeking into the server logs.</p>
+
+<p>This is the place our backend will log information about each request coming in, how the server resolves the requests and the result. This is where exception and warnings will show up and where the Pry session will open if the program hits a breakpoint.</p>
+
+<p>We have here the Rails server for Puppygotchi, the example app from <a href="/2019/11/24/debugging-part-one/}">Part One: Look Under the Hood</a>. This is all the information the server logged during for the same action from when we saw the network logs in the browser.</p>
+
+<p>Like with the network tab, we can see the HTTP request and which route it hits (Box 1), the response status code (Box 2), and the exception that was raised (Box 3), which we saw in the browser returns as part of the response body.</p>
+
+<p><img src="https://i.imgur.com/DdDAFTM.png" alt="Rails server that logs the route a request hits, the response code and any exception or error raised" width="500px" /></p>
+
+<h3 id="takeaway">Takeaway</h3>
+
+<p>There are a lot of more advanced ways to read both the Network tab and the server logs, and get them to even better clues on how to approach our bugs. When I was first getting started, I had a hard time even remembering to look in these places; let alone knowing what it was telling me. This is only meant to point out something that’s easy to overlook:</p>
+
+<blockquote>
+  <p>Even though a bug manifests itself on the frontend doesn’t necessarily mean it’s something wrong with the frontend code.</p>
+</blockquote>
+
+<p>I wasted a lot of time looking in all the wrong places only to realize that it was actually a backend issue disguising itself as a frontend error.</p>
+
+<p><img src="https://i.imgur.com/A3ypjb2.gif" alt="Captain Marvel drops through the ceiling of a bus to beat up an old lady" width="500px" /></p>
+
+<p>I also recommend keep an eye on the Network tab and the server logs as a matter of practice, because it is really beneficial to be familiar with how our programs. As we can saw, the logs don’t always tell us when something is misbehaving; they mostly just tell us what is happening. The output definitely are not always color-coded, so if we know what the logs look like when it’s correct, we will be able to spot when it’s not.</p>
+
+<p>Be patient. The more we read these logs and error messages, the easier it would be next time to spot the important things.</p>
+</span>
+
+        
+
+        <!--  -->
+
+        
+        <div class="tags">
+          <small>
+          <i class="fa fa-tags"></i>
+            CodeNewbie, Debugging, Ruby On Rails, Early career
+          </small>
+        </div>
+        
+
+      </div>
+
+      
+      <div class="content-panel feedback">
+        I <i class="fa fa-heart"></i> feedback.<br />
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/Minar528">@Minar528</a>!
+      </div>
+      
+
+      <!--  -->
+
+      
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="footer clearfix">
+  <div class="col-md-7">
+    Jekyll template created by <a href="https://twitter.com/_JacobTomlinson">Jacob Tomlinson</a>
+  </div>
+  <div class="col-md-5">
+    ©Mina Slater 2018
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.min.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+   $(document).ready(function() {
+      $("#my-menu").mmenu().on( "closed.mm", function() {
+            $(".menu-button").show();
+         });
+      $(".menu-button").click(function() {
+        $(".menu-button").hide();
+        $("#my-menu").trigger("open.mm");
+      });
+   });
+</script>
+
+
+
+
+
+
+    </body>
+</html>

@@ -5,13 +5,128 @@
     <description>Javascriptress | Rubyist | Nacho Monster</description>
     <link>https://minaslater.blog/</link>
     <atom:link href="https://minaslater.blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 Dec 2019 20:07:38 -0600</pubDate>
-    <lastBuildDate>Mon, 09 Dec 2019 20:07:38 -0600</lastBuildDate>
+    <pubDate>Fri, 27 Dec 2019 11:26:36 -0500</pubDate>
+    <lastBuildDate>Fri, 27 Dec 2019 11:26:36 -0500</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>Debugging 2 - Network Monitoring and Server Logs</title>
-        <description>&lt;p&gt;&lt;em&gt;Part Two of the &lt;strong&gt;Bridging the Knowledge Gap&lt;/strong&gt; Series on Debugging&lt;/em&gt;&lt;br /&gt;
+        <title>Bridge the Knowledge Gap, Debugging 3 - Print &amp; Interactive Debugging</title>
+        <description>&lt;p&gt;&lt;em&gt;Part Three of the &lt;strong&gt;Bridging the Knowledge Gap&lt;/strong&gt; Series on Debugging&lt;/em&gt;&lt;br /&gt;
+&lt;em&gt;Check out Part One &lt;a href=&quot;/2019/11/24/debugging-part-one/&quot;&gt;here&lt;/a&gt;&lt;/em&gt;
+&lt;em&gt;and Part Two &lt;a href=&quot;/2019/12/09/debugging-part-two/&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Learning syntax is only a small part of being a developer. The transition from coding bootcamp or online tutorials to the Real World can be a struggle. The objective of this series of blog posts is to summarize the knowledge that I gained during my own transition period (and beyond), and pay it forward to those that find themselves in a similar position.&lt;/p&gt;
+
+&lt;h3 id=&quot;debugging&quot;&gt;Debugging&lt;/h3&gt;
+
+&lt;p&gt;A reminder of the debugging topics that we will be covering:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;/2019/11/24/debugging-part-one/}&quot;&gt;“Look under the hood” - Print &amp;amp; interactive debugging&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;/2019/12/09/debugging-part-two/}&quot;&gt;“Tap the phone line” - Network monitoring &amp;amp; server logs&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;General tips&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;part-three-general-tips&quot;&gt;Part Three: General Tips&lt;/h2&gt;
+
+&lt;p&gt;Bugs and errors are normal parts of software development, because developers are only human. We have already covered some tools that will help us debug our program. In this post, we will have a look at some approaches that have worked for me. They’re not “best practices” (what does that mean, anyway?!), just some mindsets I have picked up from my mentors and peers along the way.&lt;/p&gt;
+
+&lt;h3 id=&quot;scenario&quot;&gt;Scenario&lt;/h3&gt;
+
+&lt;p&gt;Recently, my pair Shamyle and I wrote a method to sort some ActiveRecord objects returned from a couple of queries into one list. We had one database query that returned an ActiveRecord Relation, a list of Evaluations, and another query that returned one single Evaluation. The purpose of our method was to sort these results into one list based on certain attributes, so that the frontend will display them in the proper order.&lt;/p&gt;
+
+&lt;p&gt;Something like this (shortened for reasons):&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;display_evaluations&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;list_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;single_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Evaluations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;other&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;attributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;list_query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;single_query&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;list_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;date: :desc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With a fully green test suite and the UI revealing no unexpected behaviors, after the team reviewed it, we merged it into the codebase.&lt;/p&gt;
+
+&lt;p&gt;A couple hours later, when Sasha was working in the QA environment, she found that the page we worked on was broken. After a little bit of investigating, she concluded that the page couldn’t render because one of those queries to the database returned nothing. Our method was adding a &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt; into the list of objects we pass to our frontend, but when it tried to display something that was undefined, everything fell apart.&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-1---write-tests&quot;&gt;Tip #1 - Write Tests&lt;/h3&gt;
+
+&lt;p&gt;One of the first things I do when I find a bug now is write tests because we want to make sure that any future changes to the code won’t result in the same bugs again. Tests to cover the conditions under which our bugs show up will prevent that code regression and let us know when the bug has been fixed.&lt;/p&gt;
+
+&lt;p&gt;For the case above, I ended up working with her to find a solution for the bug and the first thing she suggested we do was write tests to cover this particular state of the program. Our test basically said, “hey, if one of the queries came back with no result, exclude it from the list of objects to render by not pushing it to the array we return!”&lt;/p&gt;
+
+&lt;p&gt;We didn’t know when we started debugging what specific lines of code we needed to change or what that change looked like. But backed up by the tests, we would know right away when it’s been fixed. Having comprehensive tests can also help with our next tip.&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-2---make-small-incremental-changes&quot;&gt;Tip #2 - Make Small, Incremental Changes&lt;/h3&gt;
+
+&lt;p&gt;When I first started coding, I had the tendency to make (what I know now to be) wild guesses about the cause of my bugs. I would encounter something that’s broken and immediately try to fix it in the code, glossing over the error messages. In my random attempt at a solution, I might touch multiple files and methods. At the end of the flailing, the bug would either still be there or something else altogether was broken, and I would have no idea where to begin backtracking the many changes I just made. 😱&lt;/p&gt;
+
+&lt;p&gt;Tech folks like to talk about TDD (Test Driven Development) as a Best Practice. I would also define TDD as Test Driven Debugging. Regardless whether our task is to create a new feature or fix a buggy old feature, having tests gives us a roadmap to our goal.&lt;/p&gt;
+
+&lt;p&gt;Sasha and I wrote our tests, and much like with the TDDev approach, each change in code only addressed the specific way the tests were failing or a specific error we saw &lt;em&gt;at that moment&lt;/em&gt;. So each time we tried a solution, we would run the tests, hoping that they would fail in new and exciting ways, informing our next step(s).&lt;/p&gt;
+
+&lt;h3 id=&quot;tip-3---challenge-assumptions&quot;&gt;Tip #3 - Challenge Assumptions&lt;/h3&gt;
+
+&lt;p&gt;Bugs exist because we think our codes works one way when it really works another way. There are things about our program that we take for granted to be true. How many times have you said something like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This method returns an array of objects, so when we call it here, the other method can iterate through it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;…only to find that the first method returns a different data structure sometimes?&lt;/p&gt;
+
+&lt;p&gt;They say that the first step to recovery is admitting that you have a problem. In order to debug efficiently, we have to admit that what we think we know about our code isn’t always true. We can begin by asking ourselves these questions:&lt;/p&gt;
+
+&lt;p&gt;🚨What do I &lt;em&gt;think&lt;/em&gt; my code is doing?&lt;br /&gt;
+🚨What is my code &lt;em&gt;actually&lt;/em&gt; doing? (by using some tools from Parts 1 and 2, maybe)&lt;br /&gt;
+🚨How does this disconnect cause problems in the program?&lt;/p&gt;
+
+&lt;p&gt;In the case of our example:&lt;br /&gt;
+💡I thought both of my queries would return &lt;em&gt;something&lt;/em&gt;.&lt;br /&gt;
+💡…but in actuality, those queries could return nothing from the database.&lt;br /&gt;
+💡When the frontend tries to iterate through and display components for each item in the list, it doesn’t know what to do with an &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Sometimes in our jobs as developers, it feels likes we’re just putting out fire after fire.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/QvlRjA6.gif&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, good debugging habits are almost as important as writing clean code.&lt;/p&gt;
+
+&lt;p&gt;In a perfect world, bootcamps would put more emphasis on teaching the techniques and practice of debugging; it would prevent their graduates from learning bad habits and prepare us better for our first jobs.&lt;/p&gt;
+
+&lt;p&gt;I’d like to go back to Aaron Patterson again here to close this talk. I found a tweet the other day, that he had pinned from back in January.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/i7GVEHs.png&quot; width=&quot;500px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Knowing Tenderlove, he was probably making a joke, but this actually made me feel more at ease about debugging. Because when we frame it in this way, errors and bugs are just edge cases that we haven’t considered yet. So we shouldn’t be intimidated by them.&lt;/p&gt;
+
+&lt;p&gt;And, I hope after these three posts, you are now empowered to debug with confidence!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 27 Dec 2019 00:00:00 -0500</pubDate>
+        <link>https://minaslater.blog/2019/12/27/debugging-part-three/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2019/12/27/debugging-part-three/</guid>
+        
+        <category>CodeNewbie</category>
+        
+        <category>Debugging</category>
+        
+        <category>Ruby On Rails</category>
+        
+        <category>Basics</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Bridge the Knowledge Gap, Debugging 2 - Network Monitoring and Server Logs</title>
+        <description>&lt;p&gt;&lt;em&gt;Part Two of the &lt;strong&gt;Bridge the Knowledge Gap&lt;/strong&gt; Series on Debugging&lt;/em&gt;&lt;br /&gt;
 &lt;em&gt;Check out Part One &lt;a href=&quot;/2019/11/24/debugging-part-one/&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Learning syntax is only a small part of being a developer. The transition from coding bootcamp or online tutorials to the Real World can be a struggle. The objective of this series of blog posts is to summarize the knowledge that I gained during my own transition period (and beyond), and pay it forward to those that find themselves in a similar position.&lt;/p&gt;
@@ -28,7 +143,7 @@
     &lt;p&gt;“Tap the phone line” - Network monitoring &amp;amp; server logs&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;“Find a bug, write a test” - Debugging best practice&lt;/p&gt;
+    &lt;p&gt;General tips&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -92,7 +207,7 @@
 
 &lt;p&gt;Be patient. The more we read these logs and error messages, the easier it would be next time to spot the important things.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 09 Dec 2019 00:00:00 -0600</pubDate>
+        <pubDate>Mon, 09 Dec 2019 00:00:00 -0500</pubDate>
         <link>https://minaslater.blog/2019/12/09/debugging-part-two/</link>
         <guid isPermaLink="true">https://minaslater.blog/2019/12/09/debugging-part-two/</guid>
         
@@ -108,8 +223,8 @@
       </item>
     
       <item>
-        <title>Print &amp; Interactive Debugging</title>
-        <description>&lt;p&gt;&lt;strong&gt;Part One of the &lt;em&gt;Bridging The Knowledge Gap&lt;/em&gt; series on Debugging&lt;/strong&gt;&lt;/p&gt;
+        <title>Bridge the Knowledge Gap, Debugging 1 - Print &amp; Interactive Debugging</title>
+        <description>&lt;p&gt;&lt;strong&gt;Part One of the &lt;em&gt;Bridge The Knowledge Gap&lt;/em&gt; series on Debugging&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.&lt;/p&gt;
 
@@ -135,7 +250,7 @@
     &lt;p&gt;“Tap the phone line” - Network monitoring &amp;amp; server logs&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;“Find a bug, write a test” - Debugging best practices&lt;/p&gt;
+    &lt;p&gt;General tips&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -260,8 +375,14 @@
 &lt;p&gt;In this example, &lt;code class=&quot;highlighter-rouge&quot;&gt;select&lt;/code&gt; is a Ruby built-in method on the Array and Enumerable classes, so if the object it’s being called on is anything but an instance of either class, the method call results in this error. It’s the message we’ll see every time we try to use a method on something has the incorrect data type. Since there are many answers for where, how and why the data is unexpectedly &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;, opening up the program using &lt;code class=&quot;highlighter-rouge&quot;&gt;puts&lt;/code&gt; or Pry is a decent place to start this debugging process. We can use these tools to identify the problem spots and follow the clues from there to the solution.&lt;/p&gt;
 
 &lt;p&gt;Being able to peek under the hood of my program was a game-changer! For me, the hardest part of learning to code was overcoming the disconnect between the text in the files and what shows up in the browser. It’s especially hard to conceptualize when working with a dynamically typed language like Ruby, where we can assign data of any type to the same variable without any warning about potential problems.&lt;/p&gt;
+
+&lt;h3 id=&quot;resources&quot;&gt;Resources&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html&quot;&gt;I am a puts debuggerer&lt;/a&gt; by Tenderlove&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/deivid-rodriguez/pry-byebug&quot;&gt;pry-byebug docs&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sun, 24 Nov 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sun, 24 Nov 2019 00:00:00 -0500</pubDate>
         <link>https://minaslater.blog/2019/11/24/debugging-part-one/</link>
         <guid isPermaLink="true">https://minaslater.blog/2019/11/24/debugging-part-one/</guid>
         
@@ -317,7 +438,7 @@ Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&
 
 &lt;p&gt;&lt;em&gt;The research cited was from personal experience, no official clinical trials were conducted. No medical personnel were involved in the writing of this article.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 13 Sep 2018 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 13 Sep 2018 00:00:00 -0400</pubDate>
         <link>https://minaslater.blog/2018/09/13/imposter-syndrome/</link>
         <guid isPermaLink="true">https://minaslater.blog/2018/09/13/imposter-syndrome/</guid>
         
@@ -432,7 +553,7 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 
 &lt;p&gt;There you have it. It is two weeks late for that interview, but here is my answer.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 28 Apr 2018 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 28 Apr 2018 00:00:00 -0400</pubDate>
         <link>https://minaslater.blog/2018/04/28/what-is-rest/</link>
         <guid isPermaLink="true">https://minaslater.blog/2018/04/28/what-is-rest/</guid>
         
@@ -482,7 +603,7 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 
 &lt;p&gt;Learning to code is the most challenging thing I have ever taken on and, from what I hear, the journey never really ends. There are countless magic tricks still for me to discover and pick apart, and I’m excited for the opportunities to discover all the “secrets” the tech world has to offer.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 09 Oct 2017 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 09 Oct 2017 00:00:00 -0400</pubDate>
         <link>https://minaslater.blog/2017/10/09/why-i-started-coding/</link>
         <guid isPermaLink="true">https://minaslater.blog/2017/10/09/why-i-started-coding/</guid>
         

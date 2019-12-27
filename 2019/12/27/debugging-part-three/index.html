@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge the Knowledge Gap, Debugging 3 - Print & Interactive Debugging</title>
+<meta name="description" content="Javascriptress | Rubyist | Nacho Monster">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
+<link rel="stylesheet" href="/css/highlightjs.piperita.css">
+
+<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://minaslater.blog/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://minaslater.blog/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://minaslater.blog/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://minaslater.blog/favicons/site.webmanifest">
+<link rel="mask-icon" href="https://minaslater.blog/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+</head>
+
+
+    <body>
+
+    <nav id="my-menu">
+  <div>
+    <p>Mina Slater</p>
+
+    <ul class="pages">
+      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="/posts/"><i class="fa fa-archive"></i> All Posts</a></li>
+      <li><a href="/search/"><i class="fa fa-search"></i> Search</a></li>
+    </ul>
+
+    <p class="links">
+  <a href="https://www.twitter.com/Minar528" target="_new"><i class="fa fa-twitter"></i></a>
+  <a href="https://www.linkedin.com/in/minayslater/" target="_new"><i class="fa fa-linkedin"></i></a>
+  
+  
+  
+  <a href="https://github.com/minaslater" target="_new"><i class="fa fa-github-alt"></i></a>
+  
+  <a href="https://www.instagram.com/Minar528" target="_new"><i class="fa fa-instagram"></i></a>
+  
+  <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
+</p>
+
+  </div>
+</nav>
+<div class="menu-button" href="#menu"><i class="fa fa-bars"></i></div>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      
+
+<div class="container-fluid single">
+  <div class="row">
+
+    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+      
+
+      <h1 class="header" itemprop="name">Bridge the Knowledge Gap, Debugging 3 - Print & Interactive Debugging</h1>
+
+      <div class="author">
+        <small><i>
+          
+          on <span itemprop="datePublished" content="2014-08-28">December 27, 2019</span>
+          
+        </i></small>
+      </div>
+
+      <div class="read-time">
+        <small>
+          6 minute read
+        </small>
+      </div>
+
+      <div class="content-panel content">
+
+        
+
+        <span itemprop="articleBody"><p><em>Part Three of the <strong>Bridging the Knowledge Gap</strong> Series on Debugging</em><br />
+<em>Check out Part One <a href="/2019/11/24/debugging-part-one/">here</a></em>
+<em>and Part Two <a href="/2019/12/09/debugging-part-two/">here</a></em></p>
+
+<p>Learning syntax is only a small part of being a developer. The transition from coding bootcamp or online tutorials to the Real World can be a struggle. The objective of this series of blog posts is to summarize the knowledge that I gained during my own transition period (and beyond), and pay it forward to those that find themselves in a similar position.</p>
+
+<h3 id="debugging">Debugging</h3>
+
+<p>A reminder of the debugging topics that we will be covering:</p>
+
+<ol>
+  <li>
+    <p><a href="/2019/11/24/debugging-part-one/}">“Look under the hood” - Print &amp; interactive debugging</a></p>
+  </li>
+  <li>
+    <p><a href="/2019/12/09/debugging-part-two/}">“Tap the phone line” - Network monitoring &amp; server logs</a></p>
+  </li>
+  <li>
+    <p>General tips</p>
+  </li>
+</ol>
+
+<h2 id="part-three-general-tips">Part Three: General Tips</h2>
+
+<p>Bugs and errors are normal parts of software development, because developers are only human. We have already covered some tools that will help us debug our program. In this post, we will have a look at some approaches that have worked for me. They’re not “best practices” (what does that mean, anyway?!), just some mindsets I have picked up from my mentors and peers along the way.</p>
+
+<h3 id="scenario">Scenario</h3>
+
+<p>Recently, my pair Shamyle and I wrote a method to sort some ActiveRecord objects returned from a couple of queries into one list. We had one database query that returned an ActiveRecord Relation, a list of Evaluations, and another query that returned one single Evaluation. The purpose of our method was to sort these results into one list based on certain attributes, so that the frontend will display them in the proper order.</p>
+
+<p>Something like this (shortened for reasons):</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">display_evaluations</span>
+  <span class="n">list_query</span> <span class="o">=</span> <span class="no">Evaluations</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="o">...</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="n">single_query</span> <span class="o">=</span> <span class="no">Evaluations</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="o">...</span><span class="n">other</span> <span class="n">attributes</span><span class="p">)</span>
+  <span class="n">list_query</span> <span class="o">&lt;&lt;</span> <span class="n">single_query</span>
+  <span class="n">list_query</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="ss">date: :desc</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>With a fully green test suite and the UI revealing no unexpected behaviors, after the team reviewed it, we merged it into the codebase.</p>
+
+<p>A couple hours later, when Sasha was working in the QA environment, she found that the page we worked on was broken. After a little bit of investigating, she concluded that the page couldn’t render because one of those queries to the database returned nothing. Our method was adding a <code class="highlighter-rouge">nil</code> into the list of objects we pass to our frontend, but when it tried to display something that was undefined, everything fell apart.</p>
+
+<h3 id="tip-1---write-tests">Tip #1 - Write Tests</h3>
+
+<p>One of the first things I do when I find a bug now is write tests because we want to make sure that any future changes to the code won’t result in the same bugs again. Tests to cover the conditions under which our bugs show up will prevent that code regression and let us know when the bug has been fixed.</p>
+
+<p>For the case above, I ended up working with her to find a solution for the bug and the first thing she suggested we do was write tests to cover this particular state of the program. Our test basically said, “hey, if one of the queries came back with no result, exclude it from the list of objects to render by not pushing it to the array we return!”</p>
+
+<p>We didn’t know when we started debugging what specific lines of code we needed to change or what that change looked like. But backed up by the tests, we would know right away when it’s been fixed. Having comprehensive tests can also help with our next tip.</p>
+
+<h3 id="tip-2---make-small-incremental-changes">Tip #2 - Make Small, Incremental Changes</h3>
+
+<p>When I first started coding, I had the tendency to make (what I know now to be) wild guesses about the cause of my bugs. I would encounter something that’s broken and immediately try to fix it in the code, glossing over the error messages. In my random attempt at a solution, I might touch multiple files and methods. At the end of the flailing, the bug would either still be there or something else altogether was broken, and I would have no idea where to begin backtracking the many changes I just made. 😱</p>
+
+<p>Tech folks like to talk about TDD (Test Driven Development) as a Best Practice. I would also define TDD as Test Driven Debugging. Regardless whether our task is to create a new feature or fix a buggy old feature, having tests gives us a roadmap to our goal.</p>
+
+<p>Sasha and I wrote our tests, and much like with the TDDev approach, each change in code only addressed the specific way the tests were failing or a specific error we saw <em>at that moment</em>. So each time we tried a solution, we would run the tests, hoping that they would fail in new and exciting ways, informing our next step(s).</p>
+
+<h3 id="tip-3---challenge-assumptions">Tip #3 - Challenge Assumptions</h3>
+
+<p>Bugs exist because we think our codes works one way when it really works another way. There are things about our program that we take for granted to be true. How many times have you said something like this:</p>
+
+<blockquote>
+  <p>This method returns an array of objects, so when we call it here, the other method can iterate through it.</p>
+</blockquote>
+
+<p>…only to find that the first method returns a different data structure sometimes?</p>
+
+<p>They say that the first step to recovery is admitting that you have a problem. In order to debug efficiently, we have to admit that what we think we know about our code isn’t always true. We can begin by asking ourselves these questions:</p>
+
+<p>🚨What do I <em>think</em> my code is doing?<br />
+🚨What is my code <em>actually</em> doing? (by using some tools from Parts 1 and 2, maybe)<br />
+🚨How does this disconnect cause problems in the program?</p>
+
+<p>In the case of our example:<br />
+💡I thought both of my queries would return <em>something</em>.<br />
+💡…but in actuality, those queries could return nothing from the database.<br />
+💡When the frontend tries to iterate through and display components for each item in the list, it doesn’t know what to do with an <code class="highlighter-rouge">undefined</code> or <code class="highlighter-rouge">null</code>.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Sometimes in our jobs as developers, it feels likes we’re just putting out fire after fire.</p>
+
+<p><img src="https://i.imgur.com/QvlRjA6.gif" width="500px" /></p>
+
+<p>So, good debugging habits are almost as important as writing clean code.</p>
+
+<p>In a perfect world, bootcamps would put more emphasis on teaching the techniques and practice of debugging; it would prevent their graduates from learning bad habits and prepare us better for our first jobs.</p>
+
+<p>I’d like to go back to Aaron Patterson again here to close this talk. I found a tweet the other day, that he had pinned from back in January.</p>
+
+<p><img src="https://i.imgur.com/i7GVEHs.png" width="500px" /></p>
+
+<p>Knowing Tenderlove, he was probably making a joke, but this actually made me feel more at ease about debugging. Because when we frame it in this way, errors and bugs are just edge cases that we haven’t considered yet. So we shouldn’t be intimidated by them.</p>
+
+<p>And, I hope after these three posts, you are now empowered to debug with confidence!</p>
+</span>
+
+        
+
+        <!--  -->
+
+        
+        <div class="tags">
+          <small>
+          <i class="fa fa-tags"></i>
+            CodeNewbie, Debugging, Ruby On Rails, Basics
+          </small>
+        </div>
+        
+
+      </div>
+
+      
+      <div class="content-panel feedback">
+        I <i class="fa fa-heart"></i> feedback.<br />
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/Minar528">@Minar528</a>!
+      </div>
+      
+
+      <!--  -->
+
+      
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="footer clearfix">
+  <div class="col-md-7">
+    Jekyll template created by <a href="https://twitter.com/_JacobTomlinson">Jacob Tomlinson</a>
+  </div>
+  <div class="col-md-5">
+    ©Mina Slater 2018
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.min.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+   $(document).ready(function() {
+      $("#my-menu").mmenu().on( "closed.mm", function() {
+            $(".menu-button").show();
+         });
+      $(".menu-button").click(function() {
+        $(".menu-button").hide();
+        $("#my-menu").trigger("open.mm");
+      });
+   });
+</script>
+
+
+
+
+
+
+    </body>
+</html>

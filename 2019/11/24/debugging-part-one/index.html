@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Print & Interactive Debugging</title>
+<title>Bridge the Knowledge Gap, Debugging 1 - Print & Interactive Debugging</title>
 <meta name="description" content="Javascriptress | Rubyist | Nacho Monster">
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
     <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
       
 
-      <h1 class="header" itemprop="name">Print & Interactive Debugging</h1>
+      <h1 class="header" itemprop="name">Bridge the Knowledge Gap, Debugging 1 - Print & Interactive Debugging</h1>
 
       <div class="author">
         <small><i>
@@ -89,7 +89,7 @@
 
         
 
-        <span itemprop="articleBody"><p><strong>Part One of the <em>Bridging The Knowledge Gap</em> series on Debugging</strong></p>
+        <span itemprop="articleBody"><p><strong>Part One of the <em>Bridge The Knowledge Gap</em> series on Debugging</strong></p>
 
 <p>As a Career Changer, like many others, I went through a coding bootcamp, where they taught me the very basics of building a web app. Since there is a limit to how much you can teach someone over the course of three months, compromises have to be made. Things like refactoring, testing and debugging don’t get the same attention.</p>
 
@@ -115,7 +115,7 @@
     <p>“Tap the phone line” - Network monitoring &amp; server logs</p>
   </li>
   <li>
-    <p>“Find a bug, write a test” - Debugging best practices</p>
+    <p>General tips</p>
   </li>
 </ol>
 
@@ -240,6 +240,12 @@
 <p>In this example, <code class="highlighter-rouge">select</code> is a Ruby built-in method on the Array and Enumerable classes, so if the object it’s being called on is anything but an instance of either class, the method call results in this error. It’s the message we’ll see every time we try to use a method on something has the incorrect data type. Since there are many answers for where, how and why the data is unexpectedly <code class="highlighter-rouge">nil</code>, opening up the program using <code class="highlighter-rouge">puts</code> or Pry is a decent place to start this debugging process. We can use these tools to identify the problem spots and follow the clues from there to the solution.</p>
 
 <p>Being able to peek under the hood of my program was a game-changer! For me, the hardest part of learning to code was overcoming the disconnect between the text in the files and what shows up in the browser. It’s especially hard to conceptualize when working with a dynamically typed language like Ruby, where we can assign data of any type to the same variable without any warning about potential problems.</p>
+
+<h3 id="resources">Resources</h3>
+
+<p><a href="https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html">I am a puts debuggerer</a> by Tenderlove</p>
+
+<p><a href="https://github.com/deivid-rodriguez/pry-byebug">pry-byebug docs</a></p>
 </span>
 
         

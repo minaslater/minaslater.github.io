@@ -1,11 +1,19 @@
 [
   
   {
+    "title"    : "Too Beginner to be a Conference Speaker? NEVER!",
+    "category" : "",
+    "tags"     : "CodeNewbie, Speaking, Conferences, Twitter Thread",
+    "url"      : "/2020/01/10/conference-speaking-as-a-codenewbie/",
+    "date"     : "2020-01-10 00:00:00 -0600"
+    } ,
+    
+  {
     "title"    : "Bridge the Knowledge Gap, Debugging 3 - Print &amp; Interactive Debugging",
     "category" : "",
     "tags"     : "CodeNewbie, Debugging, Ruby On Rails, Basics",
     "url"      : "/2019/12/27/debugging-part-three/",
-    "date"     : "2019-12-27 00:00:00 -0500"
+    "date"     : "2019-12-27 00:00:00 -0600"
     } ,
     
   {
@@ -13,7 +21,7 @@
     "category" : "",
     "tags"     : "CodeNewbie, Debugging, Ruby On Rails, Early career",
     "url"      : "/2019/12/09/debugging-part-two/",
-    "date"     : "2019-12-09 00:00:00 -0500"
+    "date"     : "2019-12-09 00:00:00 -0600"
     } ,
     
   {
@@ -21,7 +29,7 @@
     "category" : "",
     "tags"     : "CodeNewbie, Debugging, Ruby On Rails, Rails Basics",
     "url"      : "/2019/11/24/debugging-part-one/",
-    "date"     : "2019-11-24 00:00:00 -0500"
+    "date"     : "2019-11-24 00:00:00 -0600"
     } ,
     
   {
@@ -29,7 +37,7 @@
     "category" : "",
     "tags"     : "soft skills, imposter syndrome, CodeNewbie",
     "url"      : "/2018/09/13/imposter-syndrome/",
-    "date"     : "2018-09-13 00:00:00 -0400"
+    "date"     : "2018-09-13 00:00:00 -0500"
     } ,
     
   {
@@ -37,7 +45,7 @@
     "category" : "",
     "tags"     : "interview, api, CodeNewbie",
     "url"      : "/2018/04/28/what-is-rest/",
-    "date"     : "2018-04-28 00:00:00 -0400"
+    "date"     : "2018-04-28 00:00:00 -0500"
     } ,
     
   {
@@ -45,7 +53,7 @@
     "category" : "",
     "tags"     : "personal, CodeNewbie",
     "url"      : "/2017/10/09/why-i-started-coding/",
-    "date"     : "2017-10-09 00:00:00 -0400"
+    "date"     : "2017-10-09 00:00:00 -0500"
     } 
     
   ]

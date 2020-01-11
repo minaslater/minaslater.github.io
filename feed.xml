@@ -5,9 +5,104 @@
     <description>Javascriptress | Rubyist | Nacho Monster</description>
     <link>https://minaslater.blog/</link>
     <atom:link href="https://minaslater.blog/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 27 Dec 2019 11:26:36 -0500</pubDate>
-    <lastBuildDate>Fri, 27 Dec 2019 11:26:36 -0500</lastBuildDate>
+    <pubDate>Fri, 10 Jan 2020 23:31:26 -0600</pubDate>
+    <lastBuildDate>Fri, 10 Jan 2020 23:31:26 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Too Beginner to be a Conference Speaker? NEVER!</title>
+        <description>&lt;p&gt;When I changed careers into tech, I had a mental retro about what I could’ve done better in my past career, coming to the conclusion that:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;I didn’t stay connected enough to the community and…&lt;/li&gt;
+  &lt;li&gt;I found situations that were comfortable and held onto them, avoiding opportunities that challenged me.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, I made a conscious decision to do the opposite of both of those. I looked for leadership and organizing opportunities in the local tech community and identified things that I was scared of doing, and actively sought out chances to do them.&lt;/p&gt;
+
+&lt;p&gt;Public speaking topped that list. 😱&lt;/p&gt;
+
+&lt;p&gt;Fast-forward to 2019, after sending out CFPs (calls for paper, or talk proposals) here and there for a year, I got my first acceptance to a major conference, RailsConf. 🎉 It was a conference that I had wanted to go to for a couple years, where some of my Coding Heroes will be presenting, as well. Naturally, I was at the same time excited, honored and of course, terrified!&lt;/p&gt;
+
+&lt;p&gt;Spoiler alert: I survived.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/eYG8hAr.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since RailsConf in May I have given that same talk two more times, at THAT Conference in WI and RubyConf, getting less and less terrified each time. Some folks (mostly other Code Newbies) have expressed shock that at less than 2 years in tech, I was “already” speaking at conferences. I always told them that they can too, and should.&lt;/p&gt;
+
+&lt;p&gt;Here are the reasons why.&lt;/p&gt;
+
+&lt;h2 id=&quot;fresh-perspective&quot;&gt;Fresh Perspective&lt;/h2&gt;
+
+&lt;p&gt;We bring a set of new perspective with us when we come into the tech industry. Our experiences before entering tech might inform a simpler approach to completing the task or we might ask different questions than a Senior Engineer would. While our experience might be limited, we are also not weighed down by the same indoctrination and baggage as someone who’d spent decades in the industry. CodeNewbies are inventive. We don’t have the notion of “we’ve always done it this way”; All these tools are new to us and in our attempt to manipulate computers to do complicated things, we sometimes discover new ways to use these tools that folks might not have thought of.&lt;/p&gt;
+
+&lt;p&gt;And what better place to share these discoveries than on a conference stage?!&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation-to-learn&quot;&gt;Motivation to Learn&lt;/h2&gt;
+
+&lt;p&gt;When I first decided to submit a proposal for a conference talk titled “Bridging the Knowledge Gap: Debugging”, I was not good at it. Whenever I had to track down a bug, I froze. I had no idea when to use what tool.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Should I put a &lt;code class=&quot;highlighter-rouge&quot;&gt;binding.pry&lt;/code&gt; somewhere? If yes, where?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I always forgot to look for information in error messages or server logs. My pair, if I was pair programming, always had to make suggestions and point out the next steps to me. I constantly wished that my bootcamp had taught me more about debugging.&lt;/p&gt;
+
+&lt;p&gt;The purpose of the talk, other than to get into speaking, was to pick a topic that I want to get better at or know more about. This gave me a reason and accountability to do a deep dive that I otherwise might keep putting off. I learned so much during the research phase of preparing the presentation. Now that I’ve given the talk a few times, I’m feeling more comfortable applying those tools in my daily workflow.&lt;/p&gt;
+
+&lt;h2 id=&quot;professional-advancement&quot;&gt;Professional Advancement&lt;/h2&gt;
+
+&lt;p&gt;Long before my first trip as a speaker to RailsConf, I’ve wanted to go as an attendee. I streamed the talks from the main room from afar the two years prior to 2019. I watched videos of presentations by really smart folks like &lt;a href=&quot;https://twitter.com/tenderlove&quot;&gt;Aaron Patterson&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/eileencodes&quot;&gt;Eileen Uchitelle&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/searls&quot;&gt;Justin Searls&lt;/a&gt;. I always learned a lot from their talks and regarded them as “coding celebrities”.&lt;/p&gt;
+
+&lt;p&gt;Attending conferences, it’s pretty much a given that you’ll meet new people and create professional connections. Attending as a speaker takes this to a whole new level.&lt;/p&gt;
+
+&lt;p&gt;A lot of conferences host a reception or dinner for speakers at some point. The ones that I had been a part of took place the night before the first day. At these events, I was able to meet some of the people I looked up to in the Ruby community. I can say, with 100% truthfulness, that I “had dinner with DHH”, the creator of Ruby on Rails. We don’t have to talk about the fact that it was in a room of about 100 people.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/Md6erde.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My favorite interaction with one of the “coding celebrities” mentioned above was when Justin Searls tweeted about being nervous before a talk after 10 years of speaking, I replied that it was a relief to hear him say that as a first-time speaker. Then, &lt;em&gt;he came to my talk and complimented me afterwards&lt;/em&gt;! 😮&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/owHDvmu.png&quot; width=&quot;350px&quot; /&gt;
+&lt;img src=&quot;https://i.imgur.com/Xrh1giH.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;More than that, I have met folks who inspired and encouraged me to write more (&lt;a href=&quot;https://dev.to/molly_struve&quot;&gt;Molly Struve&lt;/a&gt;), speak more (&lt;a href=&quot;https://twitter.com/leenyburger&quot;&gt;Colleen Schnettler&lt;/a&gt;), take better care of myself (&lt;a href=&quot;https://twitter.com/avdi&quot;&gt;Avdi Grimm&lt;/a&gt;), among others. Many of whom I also now consider friends.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;All that said, the best reason I have found for me to keep speaking (even though imposter syndrome runs amok) is this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There’s always someone working to be where you are.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Even though I started speaking as a major stretch goal in a new career and to face my fears of public speaking, I keep doing it because I want to inspire other early-career developers to get up and speak about their learnings and experiences. Experts shouldn’t be the only voices we hear on conference stages. &lt;strong&gt;Representation matters.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I’m going to shamelessly include a video of my first conference talk (click to play):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/embed/g1PxL1T4Z4s&quot;&gt;&lt;img src=&quot;https://i.imgur.com/RT4apqT.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;Articles on writing proposals:&lt;br /&gt;
+&lt;a href=&quot;http://www.noelrappin.com/railsrx/2014/3/17/what-i-learned-from-reading-429-conference-proposals&quot;&gt;What I learned from reading 429 conference proposals&lt;/a&gt; by Noel Rappin&lt;br /&gt;
+&lt;a href=&quot;http://www.noelrappin.com/railsrx/2014/1/18/conference-prompts-or-how-to-submit-proposals-and-influence-people&quot;&gt;Conference Prompts: Or How to Submit Proposals and Influence People&lt;/a&gt; by Noel Rappin&lt;br /&gt;
+&lt;a href=&quot;http://www.sarahmei.com/blog/2014/04/07/what-your-conference-proposal-is-missing/&quot;&gt;What Your Conference Proposal Is Missing&lt;/a&gt; by Sarah Mei&lt;/p&gt;
+
+&lt;p&gt;I would also recommend checking out your local &lt;a href=&quot;https://www.writespeakcode.com/&quot;&gt;Write/Speak/Code&lt;/a&gt; meetups. They do a great program called Own Your Expertise that I highly recommend.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Jan 2020 00:00:00 -0600</pubDate>
+        <link>https://minaslater.blog/2020/01/10/conference-speaking-as-a-codenewbie/</link>
+        <guid isPermaLink="true">https://minaslater.blog/2020/01/10/conference-speaking-as-a-codenewbie/</guid>
+        
+        <category>CodeNewbie</category>
+        
+        <category>Speaking</category>
+        
+        <category>Conferences</category>
+        
+        <category>Twitter Thread</category>
+        
+        
+      </item>
     
       <item>
         <title>Bridge the Knowledge Gap, Debugging 3 - Print &amp; Interactive Debugging</title>
@@ -109,7 +204,7 @@
 
 &lt;p&gt;And, I hope after these three posts, you are now empowered to debug with confidence!&lt;/p&gt;
 </description>
-        <pubDate>Fri, 27 Dec 2019 00:00:00 -0500</pubDate>
+        <pubDate>Fri, 27 Dec 2019 00:00:00 -0600</pubDate>
         <link>https://minaslater.blog/2019/12/27/debugging-part-three/</link>
         <guid isPermaLink="true">https://minaslater.blog/2019/12/27/debugging-part-three/</guid>
         
@@ -207,7 +302,7 @@
 
 &lt;p&gt;Be patient. The more we read these logs and error messages, the easier it would be next time to spot the important things.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 09 Dec 2019 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 09 Dec 2019 00:00:00 -0600</pubDate>
         <link>https://minaslater.blog/2019/12/09/debugging-part-two/</link>
         <guid isPermaLink="true">https://minaslater.blog/2019/12/09/debugging-part-two/</guid>
         
@@ -382,7 +477,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/deivid-rodriguez/pry-byebug&quot;&gt;pry-byebug docs&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sun, 24 Nov 2019 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 24 Nov 2019 00:00:00 -0600</pubDate>
         <link>https://minaslater.blog/2019/11/24/debugging-part-one/</link>
         <guid isPermaLink="true">https://minaslater.blog/2019/11/24/debugging-part-one/</guid>
         
@@ -438,7 +533,7 @@ Image source: &lt;a href=&quot;https://www.pexels.com&quot;&gt;pexels.com&lt;/a&
 
 &lt;p&gt;&lt;em&gt;The research cited was from personal experience, no official clinical trials were conducted. No medical personnel were involved in the writing of this article.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 13 Sep 2018 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 13 Sep 2018 00:00:00 -0500</pubDate>
         <link>https://minaslater.blog/2018/09/13/imposter-syndrome/</link>
         <guid isPermaLink="true">https://minaslater.blog/2018/09/13/imposter-syndrome/</guid>
         
@@ -553,7 +648,7 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 
 &lt;p&gt;There you have it. It is two weeks late for that interview, but here is my answer.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 28 Apr 2018 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 28 Apr 2018 00:00:00 -0500</pubDate>
         <link>https://minaslater.blog/2018/04/28/what-is-rest/</link>
         <guid isPermaLink="true">https://minaslater.blog/2018/04/28/what-is-rest/</guid>
         
@@ -603,7 +698,7 @@ Image by: &lt;a href=&quot;http://http://doodlingdev.com/&quot;&gt;DoodlingDev&l
 
 &lt;p&gt;Learning to code is the most challenging thing I have ever taken on and, from what I hear, the journey never really ends. There are countless magic tricks still for me to discover and pick apart, and I’m excited for the opportunities to discover all the “secrets” the tech world has to offer.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 09 Oct 2017 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 09 Oct 2017 00:00:00 -0500</pubDate>
         <link>https://minaslater.blog/2017/10/09/why-i-started-coding/</link>
         <guid isPermaLink="true">https://minaslater.blog/2017/10/09/why-i-started-coding/</guid>
         
